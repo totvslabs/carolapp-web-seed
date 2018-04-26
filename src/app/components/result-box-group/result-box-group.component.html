@@ -1,0 +1,23 @@
+<div style="display:flex;">
+  <div class="box" *ngFor="let value of _values">
+
+    <div class='box-title' [style.color]="value.color">
+      {{ value.title }}
+    </div>
+    <div class='box-body'>
+      <div *ngIf="value.title!==''">
+        {{ value.content }}
+        <percentage-result *ngIf="value.percentageText!=='' && value.percentageText!==undefined"
+          [value]="value.percentageValue"
+          [text]="value.percentageText">
+        </percentage-result>
+      </div>
+
+      <div class="thf-loading" *ngIf="value.title===''">
+        <span class="thf-loading-icon"></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,18 @@
+<div *ngIf="data.length===0" [style.height]="height">
+  <loading></loading>
+</div>
+
+<kendo-chart *ngIf="data.length>0"
+  [seriesColors]="colors"
+  [style.height]="height">
+
+  <kendo-chart-title *ngIf="title!==''" [text]="title"></kendo-chart-title>
+  <kendo-chart-legend *ngIf="legend===true" position="bottom"></kendo-chart-legend>
+  <kendo-chart-series>
+    <kendo-chart-series-item type="pie"
+      [data]="data"
+      field="value"
+      categoryField="label">
+    </kendo-chart-series-item>
+  </kendo-chart-series>
+</kendo-chart>

@@ -1,0 +1,66 @@
+.page {
+	height: 100%;
+	/* max-width: 1200px; */
+	width: 100%;
+	margin: auto;
+}
+
+.page-info {
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	padding: 25px 15px;
+	width: 190px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+.page-filter {
+	background-color: #425357;
+	width: 250px;
+	height: 100vh;
+	position: fixed;
+}
+
+.page-filter-field {
+	width: 90%;
+	margin: auto;
+	background-color: white;
+	margin-top: 30px;
+	border-radius: 5px;
+	padding: 15px 15px 5px 15px;
+}
+
+.page-content {
+	background-color: #FAFBFB;
+	width: calc(100% - 250px);
+	height: 100vh;
+	position: relative;
+	left: 250px;
+}
+
+.page-menu-general {
+  background-color: #00C0E2;
+  height: 60px;
+	width: 60px;
+	display: block;
+}
+
+.page-menu-campaigns {
+  background-color: #FFB72F;
+  height: 60px;
+	width: 60px;
+	display: block;
+}
+
+.page-menu-img-general {
+	padding-top: 17px;
+	padding-left: 16px;
+}
+
+.page-menu-img-campaigns {
+	padding-top: 19px;
+	padding-left: 12px;
+}

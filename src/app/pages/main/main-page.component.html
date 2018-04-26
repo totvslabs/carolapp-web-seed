@@ -1,0 +1,58 @@
+<ng-template #filter>
+  <form>
+    <thf-input
+      name="filterExample"
+      [t-label]="this.literals?.lFilterExample"
+      [(ngModel)]="filterExample"
+      (t-change)="loadData()"
+      t-required>
+    </thf-input>
+  </form>
+</ng-template>
+
+<container [filtersTemplate]="filter">
+  <card>
+    <div class="thf-row">
+      <div class="thf-lg-12">
+        <result-box-group [values]="resultBoxes">
+        </result-box-group>
+      </div>
+    </div>
+  </card>
+
+  <card [title]="literals?.lCardSample">
+    <div class="thf-row">
+      <div class="thf-lg-12">
+        <chart
+          [series]="[{label: 'First', data: [2,3,4,5,3,2,3,2,3,4,2,3]}, {label: 'Second', data: [3,4,2,3,4,3,4,3,4,5,6,4]}]"
+          [categories]="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']"
+          [tooltip]="true"
+          [legend]="true"
+          height="270px">
+        </chart>
+      </div>
+    </div>
+  </card>
+
+  <card [title]="literals?.lCardSample">
+    <div class="thf-row">
+      <div class="thf-lg-6">
+        <chart
+          [series]="[{label: 'First', data: [2,3,4,5,3,2,3,2,3,4,2,3]}, {label: 'Second', data: [3,4,2,3,4,3,4,3,4,5,6,4]}]"
+          [categories]="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']"
+          [type]="column"
+          [tooltip]="true"
+          [legend]="true"
+          height="270px">
+        </chart>
+      </div>
+      <div class="thf-lg-6">
+        <chart-pie
+          [data]="[{label: 'First', value: 4}, {label: 'Second', value: 2}, {label: 'Third', value: 3}, {label: 'Fourth', value: 5}]"
+          height="270px">
+        </chart-pie>
+      </div>
+    </div>
+  </card>
+
+</container>

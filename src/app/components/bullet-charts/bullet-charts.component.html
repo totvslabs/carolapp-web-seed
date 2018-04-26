@@ -1,0 +1,19 @@
+<thf-widget [t-title]="title">
+  <div class="bullet-charts" *ngFor="let bullet of _bulletCharts">
+    <div class="bullet-charts-label">
+      {{ bullet.label }}
+    </div>
+  
+    <div class="bullet-charts-content">
+      <kendo-sparkline 
+        type="bullet"
+        style="width: 100%; height: 27px;"
+        [valueAxis]="bullet.bulletValueAxis">
+      </kendo-sparkline>
+    </div>
+  
+    <div class="bullet-charts-values">
+      {{ bullet.value }} / {{ bullet.max }}
+    </div>
+  </div>
+</thf-widget>
