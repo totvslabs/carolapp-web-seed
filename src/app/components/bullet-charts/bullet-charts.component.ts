@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { BulletCharts } from './bullet-charts.interface';
 
+import { numberPunctation } from '../../utils/numbers.util';
+
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'bullet-charts',
@@ -13,6 +15,8 @@ export class BulletChartsComponent implements OnInit {
   _bulletCharts = [];
 
   @Input() title = '';
+
+  @Input() height = '100';
 
   @Input() primaryColor = '#98CBE5';
 
@@ -33,6 +37,8 @@ export class BulletChartsComponent implements OnInit {
           }
         ]
       };
+      value.value = numberPunctation(value.value);
+      value.max = numberPunctation(value.max);
     });
   }
 

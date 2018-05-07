@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { highlightsColors } from './../../utils/highlights-colors';
-
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'chart',
@@ -39,20 +37,15 @@ export class ChartComponent implements OnInit {
    * Example:
    * ['orange', 'blue', '#F00']
    */
-  @Input() colors = [
-    highlightsColors.blue,
-    highlightsColors.green,
-    highlightsColors.purple,
-    highlightsColors.red,
-    highlightsColors.yellow,
-    highlightsColors.lightBlue
-  ];
+  @Input() colors = ['#FF817D', '#32C3D1', '#FFD357', '#8ADC6B', '#508CF4', '#7A7492', '#E2376D', '#00B4C4', '#D7C2B6', '#92F5CC'];
 
   @Input() height = '';
 
   @Input() legend = true;
 
   @Input() tooltip = false;
+
+  @Input() tooltipPrefix = '';
 
   constructor() { }
 

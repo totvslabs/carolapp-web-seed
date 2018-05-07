@@ -2,7 +2,7 @@
 <div class="result-box">
   <thf-widget>
     <div class="result-box-container">
-      <div *ngIf="title!==''">
+      <div *ngIf="title!=='' && title!==undefined">
         <div class="result-box-title" [style.color]="_titleColor">
           {{ title }}
         </div>
@@ -10,7 +10,7 @@
           <ng-content></ng-content>
         </div>
       </div>
-      <div class="thf-loading" *ngIf="title===''">
+      <div class="thf-loading" *ngIf="title==='' || title===undefined">
         <span class="thf-loading-icon"></span>
       </div>
     </div>

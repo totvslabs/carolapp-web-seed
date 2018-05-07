@@ -23,6 +23,24 @@ export function getShortMonthString(month: number) {
   return getMonthString(month).substr(0, 3);
 }
 
+export function getWeekDayString(day) {
+  const dayInt = (typeof day === 'string') ? parseInt(day, 10) : day;
+
+  switch (dayInt) {
+    case 0: return 'Domingo';
+    case 1: return 'Segunda';
+    case 2: return 'Terça';
+    case 3: return 'Quarta';
+    case 4: return 'Quinta';
+    case 5: return 'Sexta';
+    case 6: return 'Sábado';
+  }
+}
+
+export function getShortWeekDatString(day) {
+  return getWeekDayString(day).substr(0, 3);
+}
+
 export function getStringDate(date) {
   return (date instanceof Date) ? date.toISOString().substring(0, 10) : date;
 }
