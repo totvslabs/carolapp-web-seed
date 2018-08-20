@@ -1,10 +1,9 @@
-import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { I18nService } from '../../services/i18n.service';
-import { MainPageService } from '../../services/carol-querys/main-page.service';
+import {I18nService} from '../../services/i18n.service';
+import {MainPageService} from '../../services/carol-querys/main-page.service';
 
-import { highlightsColors } from '../../utils/highlights-colors';
+import {highlightsColors} from '../../utils/highlights-colors';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -14,20 +13,13 @@ import { highlightsColors } from '../../utils/highlights-colors';
 })
 export class MainPageComponent implements OnInit {
 
-  filterExample;
-
-  resultBoxes;
-
-  totalFidCustomers = '';
-  totalNotFidCustomers = '';
-
-  seriesFidCustomers = [];
-  categoriesFidCustomers = [];
-
-  literals = [];
+  filterExample: any;
+  resultBoxes: any;
+  literals: any;
 
   constructor(private mainPageService: MainPageService,
-              private i18n: I18nService) { }
+              private i18n: I18nService) {
+  }
 
   ngOnInit() {
 
@@ -38,25 +30,25 @@ export class MainPageComponent implements OnInit {
       content: this.literals['lExample'],
       color: highlightsColors.lightBlue
     },
-    {
-      title: '',
-      content: this.literals['lExample'],
-      color: highlightsColors.blue,
-      percentageValue: '-10',
-      percentageText: this.literals['lComparedToPreviousMonth']
-    },
-    {
-      title: '',
-      content: this.literals['lExample'],
-      color: highlightsColors.purple
-    },
-    {
-      title: '',
-      content: this.literals['lExample'],
-      color: highlightsColors.red,
-      percentageValue: '50',
-      percentageText: this.literals['lComparedToPreviousMonth']
-    }];
+      {
+        title: '',
+        content: this.literals['lExample'],
+        color: highlightsColors.blue,
+        percentageValue: '-10',
+        percentageText: this.literals['lComparedToPreviousMonth']
+      },
+      {
+        title: '',
+        content: this.literals['lExample'],
+        color: highlightsColors.purple
+      },
+      {
+        title: '',
+        content: this.literals['lExample'],
+        color: highlightsColors.red,
+        percentageValue: '50',
+        percentageText: this.literals['lComparedToPreviousMonth']
+      }];
 
 
     // to demonstrate the loading

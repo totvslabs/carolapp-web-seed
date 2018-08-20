@@ -2,7 +2,7 @@
   <form>
     <thf-input
       name="filterExample"
-      [t-label]="this.literals?.lFilterExample"
+      [t-label]="literals?.lFilterExample"
       [(ngModel)]="filterExample"
       (t-change)="loadData()"
       t-required>
@@ -40,7 +40,7 @@
         <chart
           [series]="[{label: 'First', data: [2,3,4,5,3,2,3,2,3,4,2,3]}, {label: 'Second', data: [3,4,2,3,4,3,4,3,4,5,6,4]}]"
           [categories]="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']"
-          [type]="column"
+          [type]="'column'"
           [tooltip]="true"
           [legend]="true"
           height="270px">
