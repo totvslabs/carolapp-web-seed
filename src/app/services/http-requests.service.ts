@@ -11,11 +11,25 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class HttpRequestsService {
 
-  subdomain = 'rmsdev';
-  rootUrl = `https://rmsdev.carol.ai/api/v2/`;
+  subdomain = undefined;
+  rootUrl = undefined;
   connectorId = '0a0829172fc2433c9aa26460c31b78f0';
 
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
+    var url = window.location.href;
+    var domain = url.match("/([a-z0-9|-]+\.)*[a-z0-9|-]+\.[a-z]+")[0];
+    var index = domain.indexOf('.carol.ai');
+
+    if(index > -1) {
+        domain = domain.substring(1,index)
+    }
+    else {
+        domain = "gd";
+    }
+
+    this.subdomain = domain;
+    this.rootUrl = 'https://' + domain + '.carol.ai/api/v2/';
+  }
 
   login(username, password) {
     const body = new HttpParams()
