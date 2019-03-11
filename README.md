@@ -1,48 +1,27 @@
-# First Steps
+# SeedCarolApp
 
-## Installation
-Use `npm install` to install all packages
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
 
-## Running
-Use `ng serve` to start the application on http://localhost:4200
+## Development server
 
-## Carol Configuration
-Set the subdomain, rootUrl and connectorId in the file:
-`app/services/http-requests.service.ts``
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-```
-  subdomain = 'sample';
-  rootUrl = `https://sample.carol.ai/api/v2/`;
-  connectorId = '0a0829172fc2433c9aa26460c31b78f0';
-```
+## Code scaffolding
 
-Setting up the above file, the login will be ready to use!
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+## Build
 
-# Project Structure
-- app/components: there are some components ready to use. Feel free to change these components as needed.
-- app/i18n: here we have the constants to internationalization.
-- app/pages: here is where we should add the new pages.
-- app/services: there are some reuseable components.
-- app/services/carol-querys: services with custom querys used to get data from Carol.
-- app/utils: utils functions to manipulate dates and other things.
-- assets: images and others assets.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Files
-- app/app.module.ts: main module, where we should add news components and services.
-- app/app.routing.ts: router configurator
+## Running unit tests
 
-## Custom components
-- bullet-charts - print several results.
-- card - large container to charts and result-box.
-- chart - print charts with Line or Column/Bar.
-- chart-pie - print print a Pie Chart.
-- container - page structure, with toolbar, menu and body.
-- loading - loading box with gif.
-- percentage-result - results and comparisons.
-- result-box - Small box to present results and informations.
-- result-box-group - print two, three or four result-box inline.
-- toolbar - toolbar with search, user settings and language selector.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Recomendations
-- We should choose the T-Face components instead of custom components.
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
