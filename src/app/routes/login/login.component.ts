@@ -28,7 +28,9 @@ export class LoginComponent implements AfterViewInit {
         this.authService.login(values.login, values.password).subscribe(
             () => {
                 this.router.navigate(['/']);
-                window.location.reload();
+                setTimeout(() => {
+                  window.location.reload();
+                }, 100);
             },
             error => {
                 if (error.status === 401) {

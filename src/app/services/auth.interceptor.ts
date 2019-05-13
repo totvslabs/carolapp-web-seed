@@ -7,8 +7,8 @@ import {
 } from '@angular/common/http';
 
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -29,18 +29,12 @@ export class AuthInterceptor implements HttpInterceptor {
       });
 
       return next.handle(cloned).pipe(
-        map(
-          (event: HttpEvent < any > ) => {
-            return event;
-          },
-          (err: any) => {
-            if (err instanceof HttpErrorResponse) {
-              if (err.status === 401) {
-                this.router.navigate(['login']);
-              }
-            }
+        catchError((error: any) => {
+          if (error.status === 401) {
+            this.router.navigate(['login']);
           }
-        )
+          return throwError(error);
+        })
       );
     } else {
       if (req.url !== '/api/v2/oauth2/token') {
