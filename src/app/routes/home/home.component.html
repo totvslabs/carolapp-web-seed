@@ -1,10 +1,13 @@
 <thf-page-default [t-title]="pageTitle">
   <div class="thf-row">
     <div class="thf-lg-6">
-      Grid System
+      <code><pre>{{customer | json:2}}</pre></code>
     </div>
     <div class="thf-lg-6">
-      Example
+      <form #formCustomer>
+        <thf-input t-label="Name" name="mdmname" [(ngModel)]="customer.mdmname"></thf-input>
+        <thf-button t-label="Save" (t-click)="save(customer)"></thf-button>
+      </form>
     </div>
   </div>
 </thf-page-default>

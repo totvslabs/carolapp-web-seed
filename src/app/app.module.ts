@@ -17,6 +17,7 @@ import { ThfToolbarModule } from '@totvs/thf-ui/components/thf-toolbar';
 import { ThfMenuModule } from '@totvs/thf-ui/components/thf-menu';
 import { ThfPageModule } from '@totvs/thf-ui/components/thf-page';
 import { BaseComponent } from './routes/base/base.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BaseComponent } from './routes/base/base.component';
     ThfPageLoginModule,
     ThfToolbarModule,
     ThfPageModule,
-    ThfMenuModule
+    ThfMenuModule,
+    FormsModule
   ],
   providers: [
     {
