@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Carol } from 'src/app/services/carol.service';
-import { ThfNotificationService } from '@totvs/thf-ui';
 
 @Component({
   selector: 'app-home',
@@ -9,25 +7,12 @@ import { ThfNotificationService } from '@totvs/thf-ui';
 export class HomeComponent implements OnInit {
   
   pageTitle: string;
-  queryResponse: any;
-  customer: any = {};
 
-  constructor(
-    private carol: Carol,
-    private notification: ThfNotificationService
-
-  ) {}
+  constructor() {}
 
   ngOnInit() {
-    this.pageTitle = 'Home';
+    this.pageTitle = 'Dashboard';
 
-    this.carol.query().from('mdmcustomerGolden').execute().subscribe(response => this.queryResponse = response);
-  }
-
-  save(customer) {
-    this.carol.postGolden('mdmcustomer', customer).subscribe(response => {
-      this.notification.success('Customer saved');
-    });
   }
 } 
 
