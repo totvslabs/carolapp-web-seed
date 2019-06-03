@@ -3,6 +3,7 @@ import { Carol } from 'src/app/services/carol.service';
 import { ThfTableColumn } from '@totvs/thf-ui';
 
 import { ThfBarChartSeries, ThfPieChartSeries } from '@totvs/thf-kendo/components/thf-chart';
+import { RecommendationfortheUser } from 'src/data-models/recommendation-for-the-user';
 
 @Component({
   selector: 'app-home',
@@ -83,7 +84,8 @@ export class HomeComponent implements OnInit {
   }
 
   listarRecomendacoesPorCliente(taxId?: string) {
-    const query = this.carol.query<any>().from('recommendationuser')
+    const query = this.carol.query<RecommendationfortheUser>()
+      .from(RecommendationfortheUser.dataModelName)
       .pageSize(20)
       .orderBy('.score')
       .descending();

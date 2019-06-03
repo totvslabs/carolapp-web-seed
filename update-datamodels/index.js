@@ -88,6 +88,9 @@ function createFile (dataModel) {
   let fileContent =
 `
 export class ${className} {
+
+  static dataModelName = '${dataModel.mdmName}';
+
   mdmId: string;
   mdmUpdatedUser: string;
   mdmEntityType: string;
