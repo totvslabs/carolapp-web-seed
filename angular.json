@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@progress/kendo-theme-default/dist/all.css",
               "node_modules/@totvs/thf-theme/css/thf-theme-default.min.css",
               "src/styles.scss"
             ],
