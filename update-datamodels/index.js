@@ -97,6 +97,7 @@ export class ${className} {
   mdmCreatedUser: string;
   mdmLastUpdated: Date;
   mdmCreated: string;
+  relations: any[];
   mdmCrosswalk: {
     mdmApplicationId: string;
     mdmStagingType: string;
@@ -112,6 +113,26 @@ export class ${className} {
 
   fileContent +=
 `  };
+
+  static mdmId = 'mdmId';
+  static mdmUpdatedUser = 'mdmUpdatedUser';
+  static mdmEntityType = 'mdmEntityType';
+  static mdmCreatedUser = 'mdmCreatedUser';
+  static mdmLastUpdated = 'mdmLastUpdated';
+  static mdmCreated = 'mdmCreated';
+
+  static mdmGoldenFieldAndValues: {
+`;
+
+  dataModel.mdmFields.forEach((field, idx) => {
+    if (idx) {
+      fileContent += `,\n`;
+    }
+    fileContent += `    ${field.mdmName}: '.${field.mdmName}'`;
+  });
+
+  fileContent +=
+`\n  };
 }
 
 `;

@@ -205,7 +205,11 @@ export class Query<T> {
     this.httpClient = httpClient;
   }
 
-  join(dataModel: string, fieldOriginDataModel: string, fieldTargetDataModel: string, alias: string) {
+  join(dataModel: any, fieldOriginDataModel: string, fieldTargetDataModel: string, alias: string) {
+    if (typeof dataModel !== 'string') {
+      dataModel = dataModel.prototype.dataModelName;
+    }
+
     this.joins.push(new Join(dataModel, fieldOriginDataModel, fieldTargetDataModel, alias));
     return this;
   }
@@ -237,7 +241,12 @@ export class Query<T> {
     return this;
   }
 
-  from(dataModel: string) {
+  from(dataModel: any) {
+
+    if (typeof dataModel !== 'string') {
+      dataModel = dataModel.prototype.dataModelName;
+    }
+
     this.raw.mustList.push({
       mdmFilterType: 'TYPE_FILTER',
       mdmValue: `${dataModel}Golden`
@@ -340,17 +349,17 @@ export class Query<T> {
 
   }
 
-  or(field) {
+  or(field: string) {
     field = this.appendGolden(field);
     return new FilterStatement(this, field, 'or');
   }
 
-  and(field) {
+  and(field: string) {
     field = this.appendGolden(field);
     return new FilterStatement(this, field, 'and');
   }
 
-  orderBy(field) {
+  orderBy(field: string) {
     this.sort = this.appendGolden(field);
     return this;
   }

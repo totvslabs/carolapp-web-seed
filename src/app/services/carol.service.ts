@@ -21,11 +21,15 @@ export class Carol {
     return this.queryFactory.getInstance<T>();
   }
 
-  postGolden(dataModelName: string, mdmGoldenFieldAndValues: object) {
+  postGolden(dataModel: any, mdmGoldenFieldAndValues: T) {
+    if (typeof dataModel !== 'string') {
+      dataModel = dataModel.prototype.dataModelName;
+    }
+
     return new Observable(observer => {
       this.getTemplates().subscribe(templatesByName => {
         this.http
-          .post(`/api/v1/entities/templates/${templatesByName[dataModelName].mdmId}/goldenRecords`, mdmGoldenFieldAndValues)
+          .post(`/api/v1/entities/templates/${templatesByName[dataModel].mdmId}/goldenRecords`, mdmGoldenFieldAndValues)
           .subscribe(response => {
             observer.next(response);
             observer.complete();
@@ -34,11 +38,15 @@ export class Carol {
     });
   }
 
-  updateGolden(dataModelName: string, mdmId: string, mdmGoldenFieldAndValues: any) {
+  updateGolden(dataModel: any, mdmId: string, mdmGoldenFieldAndValues: any) {
+    if (typeof dataModel !== 'string') {
+      dataModel = dataModel.prototype.dataModelName;
+    }
+
     return new Observable(observer => {
       this.getTemplates().subscribe(templatesByName => {
         this.http
-          .post(`/api/v1/entities/templates/${templatesByName[dataModelName].mdmId}/goldenRecords/${mdmId}/edit`, mdmGoldenFieldAndValues)
+          .post(`/api/v1/entities/templates/${templatesByName[dataModel].mdmId}/goldenRecords/${mdmId}/edit`, mdmGoldenFieldAndValues)
           .subscribe(response => {
             observer.next(response);
             observer.complete();
@@ -48,11 +56,15 @@ export class Carol {
   }
 
 
-  deleteGolden(dataModelName: string, mdmId: string) {
+  deleteGolden(dataModel: any, mdmId: string) {
+    if (typeof dataModel !== 'string') {
+      dataModel = dataModel.prototype.dataModelName;
+    }
+
     return new Observable(observer => {
       this.getTemplates().subscribe(templatesByName => {
         this.http
-          .delete(`/api/v1/entities/templates/${templatesByName[dataModelName].mdmId}/goldenRecords/${mdmId}`)
+          .delete(`/api/v1/entities/templates/${templatesByName[dataModel].mdmId}/goldenRecords/${mdmId}`)
           .subscribe(response => {
             observer.next(response);
             observer.complete();
