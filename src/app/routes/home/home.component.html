@@ -2,17 +2,17 @@
   <div class="thf-row">
     <div class="thf-lg-6">
       <thf-widget t-title="Os 5 produtos mais recomendados">
-        <thf-kendo-chart *ngIf="produtosMaisRecomendadosSeries"
+        <thf-kendo-chart *ngIf="mostRecommended"
           t-type="pie"
-          [t-series]="produtosMaisRecomendadosSeries">
+          [t-series]="mostRecommended">
         </thf-kendo-chart>
       </thf-widget>
     </div>
     <div class="thf-lg-6">
       <thf-widget t-title="Os 10 clientes com mais pedidos">
-        <thf-kendo-chart *ngIf="clientesComMaisPedidos"
+        <thf-kendo-chart *ngIf="mostInvoices"
           t-type="column"
-          [t-series]="clientesComMaisPedidos">
+          [t-series]="mostInvoices">
         </thf-kendo-chart>
       </thf-widget>
     </div>
@@ -22,9 +22,9 @@
     <div class="thf-lg-12">
       <thf-widget>
 
-        <thf-input name="cpf" [(ngModel)]="cpf" t-placeholder="CPF" (t-blur)="listarRecomendacoesPorCliente(cpf)" t-label="Pesquisar"></thf-input>
+        <thf-input name="cpf" [(ngModel)]="cpf" t-placeholder="CPF" (t-blur)="showRecomendationsByClient(cpf)" t-label="Pesquisar"></thf-input>
         <hr>
-        <thf-table [t-columns]="tableColumns" [t-items]="produtosRecomendadosParaCliente"></thf-table>
+        <thf-table [t-columns]="tableColumns" [t-items]="recommendationsByCustomer"></thf-table>
       </thf-widget>
     </div>
   </div>

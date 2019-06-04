@@ -4,6 +4,7 @@ import { ThfTableColumn } from '@totvs/thf-ui';
 
 import { ThfBarChartSeries, ThfPieChartSeries } from '@totvs/thf-kendo/components/thf-chart';
 import { RecommendationfortheUser } from 'src/data-models/recommendation-for-the-user';
+import { Customer } from 'src/data-models/customer';
 
 @Component({
   selector: 'app-home',
@@ -12,15 +13,19 @@ import { RecommendationfortheUser } from 'src/data-models/recommendation-for-the
 export class HomeComponent implements OnInit {
 
   pageTitle = 'Carol - Products Recommendation';
-  clientesComMaisPedidos: Array<ThfBarChartSeries>;
-  produtosMaisRecomendadosSeries: Array<ThfPieChartSeries>;
-  produtosRecomendadosParaCliente: Array<any>;
+  mostInvoices: Array<ThfBarChartSeries>;
+  mostRecommended: Array<ThfPieChartSeries>;
+  recommendationsByCustomer: Array<any>;
   cpf: string;
 
   tableColumns: Array<ThfTableColumn> = [
     {
       property: 'cpf',
       label: 'CPF'
+    },
+    {
+      property: 'mdmname',
+      label: 'Name'
     },
     {
       property: 'productName',
@@ -38,20 +43,20 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.exibirProdutosMaisRecomendados();
-    this.exibirClientesComMaisPedidos();
-    this.listarRecomendacoesPorCliente();
+    this.showMostRecommended();
+    this.showMostInvoices();
+    this.showRecomendationsByClient();
   }
 
-  exibirClientesComMaisPedidos() {
+  showMostInvoices() {
     this.carol.query().from('invoiceheader')
-      .groupBy('.mdmtaxid', 10)
+      .count('.mdmtaxid', 10)
       .pageSize(0)
       .execute()
       .subscribe(response => {
         const buckets = response.aggs.goldenValues.buckets;
 
-        this.clientesComMaisPedidos = Object.keys(buckets).map(cpf => {
+        this.mostInvoices = Object.keys(buckets).map(cpf => {
           const barChartSeries: ThfBarChartSeries = {};
           barChartSeries.name = cpf;
           barChartSeries.data = [buckets[cpf].docCount]
@@ -61,10 +66,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  exibirProdutosMaisRecomendados() {
+  showMostRecommended() {
     this.carol.query()
       .from('recommendationuser')
-      .groupBy('.mdmproductname', 5)
+      .count('.mdmproductname', 5)
       .pageSize(0)
       .execute()
       .subscribe(response => {
@@ -79,12 +84,13 @@ export class HomeComponent implements OnInit {
           };
         });
 
-        this.produtosMaisRecomendadosSeries = [series];
+        this.mostRecommended = [series];
       });
   }
 
-  listarRecomendacoesPorCliente(taxId?: string) {
-    const query = this.carol.query<RecommendationfortheUser>()
+  showRecomendationsByClient(taxId?: string) {
+    const query = this.carol
+      .query<RecommendationfortheUser>()
       .from(RecommendationfortheUser.dataModelName)
       .pageSize(20)
       .orderBy('.score')
@@ -96,7 +102,7 @@ export class HomeComponent implements OnInit {
 
     query.execute()
       .subscribe(response => {
-        this.produtosRecomendadosParaCliente = response.hits.map(hit => {
+        this.recommendationsByCustomer = response.hits.map(hit => {
           return {
             productName: hit.mdmGoldenFieldAndValues.mdmproductname,
             score: `${(hit.mdmGoldenFieldAndValues.score * 100).toFixed(2)}%`,

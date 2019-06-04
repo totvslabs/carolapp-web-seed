@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "update-datamodels": "node ./update-datamodels",
-    "start": "ng serve",
+    "start": "ng serve --port 3000",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

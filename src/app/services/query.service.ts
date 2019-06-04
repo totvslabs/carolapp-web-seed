@@ -258,13 +258,8 @@ export class Query<T> {
     return this;
   }
 
-  groupBy(field, size: number) {
+  count(field, size: number) {
     this.aggregate(field, 'TERM', size);
-    return this;
-  }
-
-  count(field) {
-    this.aggregate(field, 'COUNT');
     return this;
   }
 
@@ -396,7 +391,7 @@ export class Query<T> {
     }
 
     if (!this.namedQuery) {
-      const url = 'api/v1/queries/filter';
+      const url = '/api/v1/queries/filter';
 
       if (this.raw.mustNotList.length === 0) {
         delete this.raw.mustNotList;
@@ -441,7 +436,7 @@ export class Query<T> {
       ));
 
     } else {
-      const url = `api/v2/queries/named/${this.namedQuery}`;
+      const url = `/api/v2/queries/named/${this.namedQuery}`;
       return <Observable<Response<any>>> this.httpClient.post(url, this.namedQueryParams, { params: queryParams });
     }
 
