@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Carol } from 'src/app/services/carol.service';
-import { Customer } from 'src/data-models/customer';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +15,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.carol.query<Customer>()
-        .from(Customer)
-        .and(Customer.mdmGoldenFieldAndValues.mdmname).like('alfredo')
-        .execute().subscribe(response => {
-      this.response = response;
-    });
   }
 
 }
