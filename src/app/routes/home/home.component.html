@@ -1,31 +1,3 @@
 <thf-page-default [t-title]="pageTitle">
-  <div class="thf-row">
-    <div class="thf-lg-6">
-      <thf-widget t-title="Os 5 produtos mais recomendados">
-        <thf-kendo-chart *ngIf="mostRecommended"
-          t-type="pie"
-          [t-series]="mostRecommended">
-        </thf-kendo-chart>
-      </thf-widget>
-    </div>
-    <div class="thf-lg-6">
-      <thf-widget t-title="Os 10 clientes com mais pedidos">
-        <thf-kendo-chart *ngIf="mostInvoices"
-          t-type="column"
-          [t-series]="mostInvoices">
-        </thf-kendo-chart>
-      </thf-widget>
-    </div>
-  </div>
-
-  <div class="thf-row thf-mt-2">
-    <div class="thf-lg-12">
-      <thf-widget>
-
-        <thf-input name="cpf" [(ngModel)]="cpf" t-placeholder="CPF" (t-blur)="showRecomendationsByClient(cpf)" t-label="Pesquisar"></thf-input>
-        <hr>
-        <thf-table [t-columns]="tableColumns" [t-items]="recommendationsByCustomer"></thf-table>
-      </thf-widget>
-    </div>
-  </div>
+  It's working
 </thf-page-default>
