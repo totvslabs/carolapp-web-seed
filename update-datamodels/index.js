@@ -121,7 +121,7 @@ export class ${className} {
   static mdmLastUpdated = 'mdmLastUpdated';
   static mdmCreated = 'mdmCreated';
 
-  static mdmGoldenFieldAndValues: {
+  static mdmGoldenFieldAndValues = {
 `;
 
   dataModel.mdmFields.forEach((field, idx) => {

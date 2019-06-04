@@ -127,7 +127,7 @@ export class FilterStatement {
     const queryObj = {
       mdmFilterType: this.isNested(this.field) ? 'NESTED_TERM_FILTER' : 'TERM_FILTER',
       mdmKey: `${this.field}.folded`,
-      mdmValue: value
+      mdmValue: value.toLowerCase()
     };
 
     if (this.filterType === 'and') {
@@ -206,9 +206,7 @@ export class Query<T> {
   }
 
   join(dataModel: any, fieldOriginDataModel: string, fieldTargetDataModel: string, alias: string) {
-    if (typeof dataModel !== 'string') {
-      dataModel = dataModel.prototype.dataModelName;
-    }
+    dataModel = this.getDataModel(dataModel);
 
     this.joins.push(new Join(dataModel, fieldOriginDataModel, fieldTargetDataModel, alias));
     return this;
@@ -243,9 +241,7 @@ export class Query<T> {
 
   from(dataModel: any) {
 
-    if (typeof dataModel !== 'string') {
-      dataModel = dataModel.prototype.dataModelName;
-    }
+    dataModel = this.getDataModel(dataModel);
 
     this.raw.mustList.push({
       mdmFilterType: 'TYPE_FILTER',
@@ -464,6 +460,14 @@ export class Query<T> {
       }
     }
     return current;
+  }
+
+  private getDataModel(dataModel: any): string {
+    if (typeof dataModel !== 'string') {
+      return dataModel.prototype.constructor.dataModelName;
+    }
+
+    return dataModel;
   }
 }
 

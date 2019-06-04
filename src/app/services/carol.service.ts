@@ -21,10 +21,8 @@ export class Carol {
     return this.queryFactory.getInstance<T>();
   }
 
-  postGolden(dataModel: any, mdmGoldenFieldAndValues: T) {
-    if (typeof dataModel !== 'string') {
-      dataModel = dataModel.prototype.dataModelName;
-    }
+  postGolden(dataModel: any, mdmGoldenFieldAndValues: any) {
+    dataModel = this.getDataModel(dataModel);
 
     return new Observable(observer => {
       this.getTemplates().subscribe(templatesByName => {
@@ -39,9 +37,7 @@ export class Carol {
   }
 
   updateGolden(dataModel: any, mdmId: string, mdmGoldenFieldAndValues: any) {
-    if (typeof dataModel !== 'string') {
-      dataModel = dataModel.prototype.dataModelName;
-    }
+    dataModel = this.getDataModel(dataModel);
 
     return new Observable(observer => {
       this.getTemplates().subscribe(templatesByName => {
@@ -57,9 +53,7 @@ export class Carol {
 
 
   deleteGolden(dataModel: any, mdmId: string) {
-    if (typeof dataModel !== 'string') {
-      dataModel = dataModel.prototype.dataModelName;
-    }
+    dataModel = this.getDataModel(dataModel);
 
     return new Observable(observer => {
       this.getTemplates().subscribe(templatesByName => {
@@ -71,6 +65,14 @@ export class Carol {
           });
       });
     });
+  }
+
+  private getDataModel(dataModel: any): string {
+    if (typeof dataModel !== 'string') {
+      return dataModel.prototype.constructor.dataModelName;
+    }
+
+    return dataModel;
   }
 
   private getTemplates() {

@@ -4,7 +4,7 @@ This project can be used as a seed when you want to start building a Carol app.
 
 [Carol](https://docs.carol.ai) is a data platform with Machine Learning developed and maintained by [Totvs Labs](https://www.totvslabs.com/).
 
-I will make my best to keep this seed's dependencies up to date, but if you find some bug or want to update one of the dependencies yourself feel free to open a PR with your improvements and contribute.
+This project is constantly maintained and updated by TOTVS Labs. At the same time we encourage you to open a PR with your improvements and contribute.
 
 The project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3, it also contains [THF 3.9.0](https://thf.totvs.com.br/home) and some extra features to make your life easier when building a Carol App and retrieving data from Carol.
 
@@ -124,6 +124,7 @@ To run a Named Query:
 3. Improve the Documentation
 4. Automatic typings for Relations
 5. Generate model for Named Queries and Type named queries response
+6. Automate the process to deploy the app
 
 ## Development server
 
