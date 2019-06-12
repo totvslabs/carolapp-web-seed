@@ -19,9 +19,8 @@ export class LoginComponent implements AfterViewInit {
     ) { }
 
     ngAfterViewInit(): void {
-      const objImg = this.objElement.nativeElement.querySelector('img.thf-page-login-secondary-logo');
-      objImg.setAttribute('src', './assets/images/logo-carol.png');
-      objImg.setAttribute('alt', 'logo-carol');
+      this.objElement.nativeElement.querySelector('.thf-page-background-secondary-logo.thf-page-background-secondary-logo-right').remove();
+      this.objElement.nativeElement.querySelector('.thf-page-background-footer-select').remove();
     }
 
     checkLogin(values) {

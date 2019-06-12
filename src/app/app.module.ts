@@ -21,6 +21,7 @@ import { BaseComponent } from './routes/base/base.component';
 import { FormsModule } from '@angular/forms';
 
 import { ThfKendoModule } from '@totvs/thf-kendo';
+import { ThfModalPasswordRecoveryModule } from '@totvs/thf-templates/components/thf-modal-password-recovery';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ThfKendoModule } from '@totvs/thf-kendo';
     ThfToolbarModule,
     ThfPageModule,
     ThfMenuModule,
+    ThfModalPasswordRecoveryModule,
     FormsModule
   ],
   providers: [
