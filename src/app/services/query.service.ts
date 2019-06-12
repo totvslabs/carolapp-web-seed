@@ -125,7 +125,7 @@ export class FilterStatement {
 
   like(value) {
     const queryObj = {
-      mdmFilterType: this.isNested(this.field) ? 'NESTED_TERM_FILTER' : 'TERM_FILTER',
+      mdmFilterType: this.isNested(this.field) ? 'NESTED_MATCH_FILTER' : 'MATCH_FILTER',
       mdmKey: `${this.field}.folded`,
       mdmValue: value.toLowerCase()
     };
