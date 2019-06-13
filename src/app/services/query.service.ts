@@ -390,9 +390,26 @@ export class Query<T> {
     let queryParams = new HttpParams()
       .set('pageSize', this.size.toString())
       .set('offset', this.off.toString())
-      .set('index', this.idx)
-      .set('sortBy', this.sort)
-      .set('sortOrder', this.sortOrder);
+      .set('index', this.idx);
+
+    if (!this.aggregationType) {
+      queryParams = queryParams
+          .set('sortBy', this.sort)
+          .set('sortOrder', this.sortOrder);
+    } else {
+      if (!this.sort) {
+        this.sort = this.aggregationType;
+      }
+
+      let aggregation = this.raw.aggregationList[0];
+
+      while (aggregation.subAggregations && aggregation.subAggregations.length) {
+        aggregation = aggregation.subAggregations;
+      }
+
+      aggregation.sortBy = this.sort.toLowerCase() === this.aggregationType.toLowerCase()? `_${this.sort}` : this.sort;
+      aggregation.sortOrder = this.sortOrder;
+    }
 
     if (this.fields) {
       queryParams = queryParams.set('fields', this.fields.join(','));
