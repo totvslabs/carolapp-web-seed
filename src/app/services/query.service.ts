@@ -423,7 +423,11 @@ export class Query<T> {
             case 'COUNT': {
               const buckets = response.aggs.goldenValues.buckets;
               const resDto: CountResponse = {
-                counts: Object.keys(buckets).map(key => {
+                hits: response.hits,
+                count: response.count,
+                took: response.took,
+                totalHits: response.totalHits,
+                aggs: Object.keys(buckets).map(key => {
                   return {
                     key: key,
                     count: buckets[key].docCount
@@ -500,9 +504,9 @@ export class Response<T> {
   took: number;
 }
 
-export class CountResponse {
-  counts: {
+export class CountResponse extends Response<any> {
+  aggs: {
     key: any;
     count: number;
-  } [];
+  }[];
 }
