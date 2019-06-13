@@ -185,6 +185,8 @@ export class Query<T> {
   private size = 20;
   private off = 0;
 
+  private aggregationType: string;
+
   private namedQuery: string = null;
   private namedQueryParams: object = null;
 
@@ -264,6 +266,7 @@ export class Query<T> {
   }
 
   count(field, size: number) {
+    this.aggregationType = 'COUNT';
     this.aggregate(field, 'TERM', size);
     return this;
   }
@@ -416,11 +419,31 @@ export class Query<T> {
 
       return this.httpClient.post(url, this.raw, { params: queryParams }).pipe(map(
         (response: any) => {
-          const resDto = new Response<T>();
-          resDto.count = response.count;
-          resDto.hits = response.hits;
-          resDto.took = response.took;
-          resDto.totalHits = response.totalHits;
+          switch (this.aggregationType) {
+            case 'COUNT': {
+              const buckets = response.aggs.goldenValues.buckets;
+              const resDto: CountResponse = {
+                counts: Object.keys(buckets).map(key => {
+                  return {
+                    key: key,
+                    count: buckets[key].docCount
+                  };
+                })
+              };
+
+              return resDto;
+            }
+            default: {
+              const resDto = new Response<T>();
+              resDto.count = response.count;
+              resDto.hits = response.hits;
+              resDto.took = response.took;
+              resDto.totalHits = response.totalHits;
+              resDto.aggs = response.aggs;
+              return resDto;
+            }
+          }
+
 
           /*
           this.joins.forEach((join) => {
@@ -435,8 +458,6 @@ export class Query<T> {
             });
           });
           */
-
-          return response;
         }
       ));
 
@@ -477,4 +498,11 @@ export class Response<T> {
   count: number;
   totalHits: number;
   took: number;
+}
+
+export class CountResponse {
+  counts: {
+    key: any;
+    count: number;
+  } [];
 }

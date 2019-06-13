@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "update-datamodels": "node ./update-datamodels",
+    "update-model": "node ./update-model",
     "start": "ng serve --port 3000",
     "build": "ng build",
     "test": "ng test",
