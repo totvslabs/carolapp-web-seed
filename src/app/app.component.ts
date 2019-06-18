@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { carol } from 'carol-sdk/lib/carol';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,6 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   constructor(private auth: AuthService) {
     this.auth.sessionObservable.subscribe();
+    carol.setAuthToken(localStorage.getItem('carol-token'));
   }
 }

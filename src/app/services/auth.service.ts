@@ -1,19 +1,13 @@
+import { HttpClient, HttpHeaders, HttpParameterCodec, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import * as moment from 'moment';
 import { Router } from '@angular/router';
-
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-  HttpParameterCodec
-} from '@angular/common/http';
-
-import { map } from 'rxjs/operators';
-import { UtilsService } from './utils.service';
 import { ThfToolbarProfile } from '@totvs/thf-ui/components/thf-toolbar';
+import { carol } from 'carol-sdk/lib/carol';
+import * as moment from 'moment';
 import { Observable, Observer } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { UtilsService } from './utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +55,8 @@ export class AuthService {
   }
 
   setSession(authResult, user) {
-    localStorage.setItem('access_token', authResult['access_token']);
+    carol.setAuthToken(authResult['access_token']);
+    localStorage.setItem('carol-token', authResult['access_token']);
     localStorage.setItem('user', user);
 
     const expiresAt = moment().add(authResult['expires_in'], 'second');
@@ -75,7 +70,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('carol-token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('user');
 
