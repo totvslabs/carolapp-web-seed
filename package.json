@@ -25,7 +25,7 @@
     "@totvs/thf-kendo": "^3.21.0",
     "@totvs/thf-templates": "^3.21.0",
     "@totvs/thf-ui": "^3.21.0",
-    "carol-sdk": "0.0.6",
+    "@carol/carol-sdk": "0.0.7",
     "core-js": "^2.5.4",
     "moment": "^2.24.0",
     "rxjs": "~6.3.3",
