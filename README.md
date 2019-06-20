@@ -6,7 +6,7 @@ This project can be used as a seed when you want to start building a Carol app.
 
 This project is constantly maintained and updated by TOTVS Labs. At the same time we encourage you to open a PR with your improvements and contribute.
 
-The project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3, it also contains [THF 3.9.0](https://thf.totvs.com.br/home) and some extra features to make your life easier when building a Carol App and retrieving data from Carol.
+The project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3, it also contains [THF 3.21.0](https://thf.totvs.com.br/home) and some extra features to make your life easier when building a Carol App and retrieving data from Carol.
 
 ### Included Features/Configurations
 
@@ -51,26 +51,6 @@ Build a query using the Data Models generated:
       .execute()
       .subscribe(response => {
         ...
-      });
-```
-
-You can build relations between datamodels directly in the Front End. The main Query will be executed and `Observables` will be provided to lazily resolve the Joins. Example:
-
-```javascript
-  this.carol.query<InvoiceHeader>()
-      .from(InvoiceHeader)
-      .join(
-        Customer,
-        InvoiceHeader.mdmGoldenFieldAndValues.mdmtaxid,
-        Customer.mdmGoldenFieldAndValues.mdmtaxid,
-        'customer'
-      )
-      .execute()
-      .subscribe(response => {
-        const invoiceHeader = response.hits[0];
-        invoiceHeader.relations.customer.subscribe(invoiceHeaderCustomer => {
-          ...
-        });
       });
 ```
 
@@ -122,9 +102,8 @@ To run a Named Query:
 1. Keep the dependencies up-to-date
 2. Improve the Query builder with more complex Aggregations
 3. Improve the Documentation
-4. Automatic typings for Relations
-5. Generate model for Named Queries and Type named queries response
-6. Automate the process to deploy the app
+4. Generate model for Named Queries and Type named queries response
+5. Automate the process to deploy the app
 
 ## Development server
 

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParameterCodec, HttpParams } from '@angula
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ThfToolbarProfile } from '@totvs/thf-ui/components/thf-toolbar';
-import { carol } from 'carol-sdk/lib/carol';
+import { carol } from '@carol/carol-sdk/lib/carol';
 import * as moment from 'moment';
 import { Observable, Observer } from 'rxjs';
 import { map } from 'rxjs/operators';

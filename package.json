@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "update-model": "node ./node_modules/carol-sdk/src/update-model",
+    "update-model": "node ./node_modules/@carol/carol-sdk/src/update-model",
     "start": "ng serve --port 3000",
     "build": "ng build",
     "test": "ng test",
@@ -25,7 +25,7 @@
     "@totvs/thf-kendo": "^3.21.0",
     "@totvs/thf-templates": "^3.21.0",
     "@totvs/thf-ui": "^3.21.0",
-    "@carol/carol-sdk": "0.0.7",
+    "@carol/carol-sdk": "0.0.21",
     "core-js": "^2.5.4",
     "moment": "^2.24.0",
     "rxjs": "~6.3.3",

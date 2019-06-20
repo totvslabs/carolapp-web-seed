@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { carol } from '@carol/carol-sdk/lib/carol';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  constructor() {}
+  constructor() {
+  }
 
 }
 
