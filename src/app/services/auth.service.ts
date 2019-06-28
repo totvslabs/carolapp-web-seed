@@ -70,11 +70,22 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('carol-token');
-    localStorage.removeItem('expires_at');
-    localStorage.removeItem('user');
+    const body = new HttpParams({encoder: new CustomEncoder()})
+      .set('access_token', localStorage.getItem('carol-token').replace('/"/g', ''));
 
-    this.router.navigate(['login']);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+
+    return this.http.post('/api/v1/oauth2/logout', body.toString(), httpOptions).subscribe(() => {
+      localStorage.removeItem('carol-token');
+      localStorage.removeItem('expires_at');
+      localStorage.removeItem('user');
+
+      this.router.navigate(['login']);
+    });
   }
 
   isLoggedIn() {
