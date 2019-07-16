@@ -24,7 +24,7 @@ export class LoginComponent implements AfterViewInit {
     }
 
     checkLogin(values) {
-        this.authService.login(values.login, values.password).subscribe(
+        this.authService.login(values.login, values.password).then(
             () => {
                 this.router.navigate(['/']);
                 setTimeout(() => {

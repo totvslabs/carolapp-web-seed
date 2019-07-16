@@ -1,15 +1,9 @@
-import {
-  HttpRequest,
-  HttpInterceptor,
-  HttpHandler,
-  HttpEvent,
-  HttpErrorResponse
-} from '@angular/common/http';
-
-import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { httpClient } from '@carol/carol-sdk/lib/http-client';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const idToken = localStorage.getItem('carol-token');
+    const idToken = httpClient.authToken;
 
     if (idToken) {
       const cloned = req.clone({

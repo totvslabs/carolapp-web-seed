@@ -1,7 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
-import * as configs from '../../../proxy.conf.json';
 
-import * as moment from 'moment';
+import * as configs from '../../../proxy.conf.json';
 
 @Injectable({
   providedIn: 'root'
