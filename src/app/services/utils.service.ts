@@ -30,7 +30,7 @@ export class UtilsService {
       return configs['environment'];
     } else {
       const environment = window.location.pathname.split('/')[1];
-      return environment === 'apps' ? this.getOrganization() : environment;
+      return environment === 'apps' ? window.location.host.split('.')[0] : environment;
     }
   }
 

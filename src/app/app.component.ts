@@ -22,6 +22,15 @@ export class AppComponent {
     carol.setOrganization(this.utils.getOrganization());
     carol.setEnvironment(this.utils.getEnvironment());
 
+    let idToken;
+    if (utils.getOrganization()) {
+      idToken = localStorage.getItem(`carol-${utils.getOrganization()}-${utils.getEnvironment()}-token`);
+    } else {
+      idToken = localStorage.getItem('carol-token');
+    }
+
+    carol.setAuthToken(idToken);
+
     httpClient.addInterceptor('auth', (status, response) => {
       if (status === 401) {
         this.router.navigate(['login']);
