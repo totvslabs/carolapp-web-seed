@@ -1,8 +1,9 @@
 {
   "connectorId": "0a0829172fc2433c9aa26460c31b78f0",
-  "subdomain": "explore",
+  "organization": "totvs2",
+  "environment": "totvslabs2",
   "/api/*": {
-      "target": "https://explore.carol.ai",
+      "target": "https://totvs2.qarol.ai",
       "secure": true,
       "logLevel": "debug",
       "changeOrigin": true

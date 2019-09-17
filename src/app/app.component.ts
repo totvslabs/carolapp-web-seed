@@ -19,7 +19,8 @@ export class AppComponent {
 
     this.auth.sessionObservable.subscribe();
 
-    carol.setSubdomain(this.utils.getSubdomain());
+    carol.setOrganization(this.utils.getOrganization());
+    carol.setEnvironment(this.utils.getEnvironment());
 
     httpClient.addInterceptor('auth', (status, response) => {
       if (status === 401) {
