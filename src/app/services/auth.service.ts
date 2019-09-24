@@ -35,12 +35,7 @@ export class AuthService {
   setSession(authResult, user) {
     carol.setAuthToken(authResult['access_token']);
 
-    let tokenName;
-    if (utils.getOrganization()) {
-      tokenName = `carol-${utils.getOrganization()}-${utils.getEnvironment()}-token`;
-    } else {
-      tokenName = 'carol-token';
-    }
+    const tokenName = this.getTokenName();
 
     localStorage.setItem(tokenName, authResult['access_token']);
     localStorage.setItem('user', user);
@@ -51,15 +46,21 @@ export class AuthService {
     this.sessionObserver.next(this.buildProfile());
   }
 
+  getTokenName() {
+    if (utils.getOrganization()) {
+      return `carol-${utils.getOrganization()}-${utils.getEnvironment()}-token`;
+    } else {
+      return 'carol-token';
+    }
+  }
+
   getSession(): Observable < any > {
     return this.sessionObservable;
   }
 
   logout() {
     return carol.logout().then(() => {
-      localStorage.removeItem('carol-token');
-      localStorage.removeItem('expires_at');
-      localStorage.removeItem('user');
+      localStorage.clear();
 
       this.router.navigate(['login']);
     });

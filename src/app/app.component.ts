@@ -22,12 +22,11 @@ export class AppComponent {
     carol.setOrganization(this.utils.getOrganization());
     carol.setEnvironment(this.utils.getEnvironment());
 
-    let idToken;
-    if (utils.getOrganization()) {
-      idToken = localStorage.getItem(`carol-${utils.getOrganization()}-${utils.getEnvironment()}-token`);
-    } else {
-      idToken = localStorage.getItem('carol-token');
+    const idToken = localStorage.getItem(this.auth.getTokenName());
+    if (idToken) {
+      carol.setAuthToken(idToken.replace(/\"/g, ''));
     }
+
 
     carol.setAuthToken(idToken);
 
