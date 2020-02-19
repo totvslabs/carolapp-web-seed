@@ -1,6 +1,6 @@
 {
   "name": "seed-carol-app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "update-model": "node ./node_modules/@carol/carol-sdk/src/update-model",
@@ -20,7 +20,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "@carol/carol-sdk": "^0.1.7",
+    "@carol/carol-sdk": "^0.1.12",
     "@totvs/thf-kendo": "^4.0.2",
     "@totvs/thf-templates": "^4.0.2",
     "@totvs/thf-ui": "^4.0.2",
