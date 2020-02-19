@@ -27,9 +27,9 @@
     "@totvs/thf-ui": "^4.0.2",
     "core-js": "^2.5.4",
     "moment": "^2.24.0",
-    "rxjs": "~6.3.3",
+    "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.11.3",
