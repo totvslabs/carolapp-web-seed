@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { carol } from '@carol/carol-sdk/lib/carol';
-import { ThfToolbarProfile } from '@totvs/thf-ui/components/thf-toolbar';
 import * as moment from 'moment';
 import { Observable, Observer } from 'rxjs';
 import { utils } from '@carol/carol-sdk/lib/utils';
+import { ThfToolbarProfile } from '@totvs/thf-ui';
 
 @Injectable({
   providedIn: 'root'
