@@ -1,9 +1,9 @@
 {
   "connectorId": "0a0829172fc2433c9aa26460c31b78f0",
-  "organization": "global",
-  "environment": "explore",
+  "organization": "totvsingo",
+  "environment": "totvslabsingo",
   "/api/*": {
-      "target": "https://global.karol.ai",
+      "target": "https://totvsingo.qarol.ai",
       "secure": true,
       "logLevel": "debug",
       "changeOrigin": true

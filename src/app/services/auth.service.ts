@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { Observable, Observer } from 'rxjs';
 import { utils } from '@carol/carol-sdk/lib/utils';
 import { ThfToolbarProfile } from '@totvs/thf-ui';
+import { httpClient } from '@carol/carol-sdk/lib/http-client';
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +23,6 @@ export class AuthService {
       if (localStorage.getItem('user')) {
         observer.next(this.buildProfile());
       }
-    });
-  }
-
-  login(username, password) {
-    return carol.login(username, password).then(response => {
-      this.setSession(response, username);
-      return response;
     });
   }
 
@@ -62,7 +56,7 @@ export class AuthService {
     return carol.logout().then(() => {
       localStorage.clear();
 
-      this.router.navigate(['login']);
+      this.goToLogin(true);
     });
   }
 
@@ -85,6 +79,10 @@ export class AuthService {
       avatar: 'assets/images/avatar-24x24.png',
       title: localStorage.getItem('user')
     };
+  }
+
+  goToLogin(logout = false) {
+    window.location.href = `${location.origin}/auth?redirect=${encodeURI(location.pathname + location.search)}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
   }
 }
 
