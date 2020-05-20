@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ThfKendoModule } from '@totvs/thf-kendo';
-import { ThfFieldModule, ThfMenuModule, ThfModule, ThfPageModule, ThfToolbarModule } from '@totvs/thf-ui';
+import { RouterModule } from '@angular/router';
+import { PoFieldModule, PoMenuModule, PoModule, PoPageModule, PoToolbarModule } from '@po-ui/ng-components';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,14 +22,15 @@ import { AuthInterceptor } from './services/auth.interceptor';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ThfPageModule,
-    ThfFieldModule,
-    ThfModule,
-    ThfKendoModule,
-    ThfToolbarModule,
-    ThfPageModule,
-    ThfMenuModule,
-    FormsModule
+    PoPageModule,
+    PoFieldModule,
+    PoModule,
+    PoToolbarModule,
+    PoPageModule,
+    PoMenuModule,
+    FormsModule,
+    PoModule,
+    RouterModule.forRoot([])
   ],
   providers: [
     {

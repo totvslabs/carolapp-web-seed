@@ -4,15 +4,15 @@ import { carol } from '@carol/carol-sdk/lib/carol';
 import * as moment from 'moment';
 import { Observable, Observer } from 'rxjs';
 import { utils } from '@carol/carol-sdk/lib/utils';
-import { ThfToolbarProfile } from '@totvs/thf-ui';
 import { httpClient } from '@carol/carol-sdk/lib/http-client';
+import { PoToolbarProfile } from '@po-ui/ng-components';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  sessionObservable: Observable<ThfToolbarProfile> ;
-  sessionObserver: Observer<ThfToolbarProfile> ;
+  sessionObservable: Observable<PoToolbarProfile>;
+  sessionObserver: Observer<PoToolbarProfile>;
 
   constructor(
     private router: Router
@@ -74,7 +74,7 @@ export class AuthService {
     return moment(expiresAt);
   }
 
-  buildProfile(): ThfToolbarProfile {
+  buildProfile(): PoToolbarProfile {
     return {
       avatar: 'assets/images/avatar-24x24.png',
       title: localStorage.getItem('user')
