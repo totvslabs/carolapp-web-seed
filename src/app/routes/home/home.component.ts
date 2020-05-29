@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { carol } from '@carol/carol-sdk/lib/carol';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    carol.select().from('mdmcompany').execute();
+
   }
 
 }
