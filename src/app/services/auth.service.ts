@@ -83,7 +83,7 @@ export class AuthService {
 
   goToLogin(logout = false) {
     const origin = location.origin;
-    const url = `${origin}/auth?redirect=${encodeURI(location.pathname + location.search)}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
+    const url = `${origin}/auth/?redirect=${encodeURI(location.pathname + location.search)}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
     window.open(url, '_self');
   }
 }
