@@ -1,9 +1,9 @@
 {
   "connectorId": "0a0829172fc2433c9aa26460c31b78f0",
-  "organization": "totvsingo",
-  "environment": "totvslabsingo",
+  "organization": "totvsdevelop",
+  "environment": "totvslabsdevelop",
   "/api/*": {
-      "target": "https://totvsingo.qarol.ai",
+      "target": "https://totvsdevelop.qarol.ai",
       "secure": true,
       "logLevel": "debug",
       "changeOrigin": true
