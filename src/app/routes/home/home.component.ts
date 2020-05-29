@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    carol.select().from('mdmcompany').execute();
 
   }
 
