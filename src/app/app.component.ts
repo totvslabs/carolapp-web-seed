@@ -21,10 +21,6 @@ export class AppComponent implements OnInit {
     private utils: UtilsService
   ) { }
 
-  readonly menus: Array<PoMenuItem> = [
-    { label: 'Home', action: this.onClick.bind(this) }
-  ];
-
   ngOnInit() {
     this.auth.sessionObservable.subscribe();
 
