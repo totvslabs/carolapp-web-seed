@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { carol } from '@carol/carol-sdk/lib/carol';
 import * as moment from 'moment';
@@ -6,6 +6,7 @@ import { Observable, Observer } from 'rxjs';
 import { utils } from '@carol/carol-sdk/lib/utils';
 import { httpClient } from '@carol/carol-sdk/lib/http-client';
 import { PoToolbarProfile } from '@po-ui/ng-components';
+import * as conf from '../../../proxy.conf.json';
 
 @Injectable({
   providedIn: 'root'
@@ -82,7 +83,12 @@ export class AuthService {
   }
 
   goToLogin(logout = false) {
-    const origin = location.origin;
+    let origin;
+    if (isDevMode()) {
+      origin = conf['/api/*'].target;
+    } else {
+      origin = location.origin;
+    }
     const url = `${origin}/auth/?redirect=${encodeURI(location.pathname + location.search)}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
     window.open(url, '_self');
   }
