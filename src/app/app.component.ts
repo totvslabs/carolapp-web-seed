@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
     if (this.getParameterByName('handoff')) {
       localStorage.setItem(this.auth.getTokenName(), this.getParameterByName('handoff'));
       this.updateQueryStringParam('handoff', null);
+      location.pathname = '';
     }
 
     let idToken;

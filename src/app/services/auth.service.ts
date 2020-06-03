@@ -84,12 +84,14 @@ export class AuthService {
 
   goToLogin(logout = false) {
     let origin;
+    let url;
     if (isDevMode()) {
       origin = conf['/api/*'].target;
+      url = `${origin}/auth/?redirect=${encodeURI(location.origin + location.pathname)}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
     } else {
       origin = location.origin;
+      url = `${origin}/auth/?redirect=${encodeURI(location.pathname + location.search)}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
     }
-    const url = `${origin}/auth/?redirect=${encodeURI(location.pathname + location.search)}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
     window.open(url, '_self');
   }
 }
