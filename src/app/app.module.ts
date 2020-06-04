@@ -9,14 +9,16 @@ import { PoFieldModule, PoMenuModule, PoModule, PoPageModule, PoToolbarModule } 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BaseComponent } from './routes/base/base.component';
-import { HomeComponent } from './routes/home/home.component';
+import { CadastrarClienteComponent } from './routes/cadastrar-cliente/cadastrar-cliente.component';
+import { DashboardComponent } from './routes/dashboard/dashboard.component';
 import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    BaseComponent
+    BaseComponent,
+    DashboardComponent,
+    CadastrarClienteComponent
   ],
   imports: [
     BrowserModule,

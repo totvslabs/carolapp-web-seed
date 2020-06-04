@@ -1,9 +1,9 @@
 {
   "connectorId": "0a0829172fc2433c9aa26460c31b78f0",
-  "organization": "totvsdevelop",
-  "environment": "totvslabsdevelop",
+  "organization": "webinarsso",
+  "environment": "webinarsso",
   "/api/*": {
-      "target": "https://totvsdevelop.qarol.ai",
+      "target": "https://webinarsso.qarol.ai",
       "secure": true,
       "logLevel": "debug",
       "changeOrigin": true

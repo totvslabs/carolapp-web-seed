@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './routes/home/home.component';
+import { RouterModule, Routes } from '@angular/router';
+
 import { BaseComponent } from './routes/base/base.component';
+import { CadastrarClienteComponent } from './routes/cadastrar-cliente/cadastrar-cliente.component';
+import { DashboardComponent } from './routes/dashboard/dashboard.component';
 
 
 const routes: Routes = [
   { path: '', component: BaseComponent, children: [
-    { path: '', component: HomeComponent }
+    { path: '', component: DashboardComponent },
+    { path: 'clientes/:id', component: CadastrarClienteComponent }
   ]}
 ];
 
