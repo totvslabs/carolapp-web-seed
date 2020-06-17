@@ -85,13 +85,22 @@ export class AuthService {
   goToLogin(logout = false) {
     let origin;
     let url;
+
+    let redirect = encodeURI(location.origin + location.pathname);
+
+    if (redirect[redirect.length - 1] === '/') {
+      redirect = redirect.substr(0, redirect.length - 1);
+    }
+
     if (isDevMode()) {
       origin = conf['/api/*'].target;
-      url = `${origin}/auth/?redirect=${encodeURI(location.origin + location.pathname)}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
+      url = `${origin}/auth/?redirect=${redirect}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
     } else {
       origin = location.origin;
-      url = `${origin}/auth/?redirect=${encodeURI(location.pathname + location.search)}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
+      url = `${origin}/auth/?redirect=${redirect}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
     }
+
+
     window.open(url, '_self');
   }
 }

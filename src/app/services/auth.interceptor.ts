@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { httpClient } from '@carol/carol-sdk/lib/http-client';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -19,21 +20,19 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const idToken = httpClient.authToken;
 
+    let newReq = req;
     if (idToken) {
-      const cloned = req.clone({
+      newReq = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + idToken.replace(/\"/g, ''))
       });
-
-      return next.handle(cloned).pipe(
-        catchError((error: any) => {
-          if (error.status === 401) {
-            this.authService.goToLogin();
-          }
-          return throwError(error);
-        })
-      );
-    } else {
-      this.authService.goToLogin();
     }
+    return next.handle(newReq).pipe(
+      catchError((error: any) => {
+        if (error.status === 401) {
+          this.authService.goToLogin();
+        }
+        return throwError(error);
+      })
+    );
   }
 }
