@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
-import { PoMenuItem } from '@po-ui/ng-components';
-import { AuthService } from './services/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { carol } from '@carol/carol-sdk/lib/carol';
-import { UtilsService } from './services/utils.service';
-import { utils } from '@carol/carol-sdk/lib/utils';
 import { httpClient } from '@carol/carol-sdk/lib/http-client';
+import { utils } from '@carol/carol-sdk/lib/utils';
+
+import { AuthService } from './services/auth.service';
+import { UtilsService } from './services/utils.service';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +29,6 @@ export class AppComponent implements OnInit {
     if (this.getParameterByName('handoff')) {
       localStorage.setItem(this.auth.getTokenName(), this.getParameterByName('handoff'));
       this.updateQueryStringParam('handoff', null);
-      location.pathname = '';
     }
 
     let idToken;
@@ -52,10 +50,6 @@ export class AppComponent implements OnInit {
         this.auth.goToLogin();
       }
     });
-  }
-
-  private onClick() {
-    alert('Clicked in menu item')
   }
 
   private getParameterByName(name) {
@@ -81,15 +75,15 @@ export class AppComponent implements OnInit {
       const removeRegex = new RegExp('([\?&])' + key + '=[^&;]+[&;]?');
 
       if (typeof value == 'undefined' || value == null || value == '') {
-        params = urlQueryString.replace(removeRegex, "$1");
-        params = params.replace(/[&;]$/, "");
+        params = urlQueryString.replace(removeRegex, '$1');
+        params = params.replace(/[&;]$/, '');
       } else if (urlQueryString.match(updateRegex) !== null) {
-        params = urlQueryString.replace(updateRegex, "$1" + newParam);
+        params = urlQueryString.replace(updateRegex, '$1' + newParam);
       } else {
         params = urlQueryString + '&' + newParam;
       }
     }
-    window.history.replaceState({}, "", baseUrl + params);
+    window.history.replaceState({}, '', baseUrl + params);
   }
 
 }
