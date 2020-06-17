@@ -1,9 +1,9 @@
 {
   "connectorId": "0a0829172fc2433c9aa26460c31b78f0",
-  "organization": "webinarsso",
-  "environment": "webinarsso",
+  "organization": "poffo",
+  "environment": "webinartest",
   "/api/*": {
-      "target": "https://webinarsso.qarol.ai",
+      "target": "https://poffo.carol.ai",
       "secure": true,
       "logLevel": "debug",
       "changeOrigin": true

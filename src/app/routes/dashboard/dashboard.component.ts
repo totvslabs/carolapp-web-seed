@@ -70,12 +70,14 @@ export class DashboardComponent implements OnInit {
       )
       .from(CustomerAnalysis)
       .execute().then(response => {
-        this.chartSeries = response.hits.map(h => {
+        this.chartSeries = response.hits.map((h: any) => {
           return {
-            category: h.mdmcustomername,
-            value: h.score
+            category: h.mdmGoldenFieldAndValues.mdmcustomername,
+            value: Number(h.mdmGoldenFieldAndValues.score)
           };
         });
+
+        console.log(this.chartSeries);
       });
   }
 

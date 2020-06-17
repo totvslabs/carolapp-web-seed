@@ -10,7 +10,8 @@ import { PoToolbarProfile, PoToolbarAction } from '@po-ui/ng-components';
 export class BaseComponent {
 
   menus = [
-    { label: 'Dashboard', link: '/' }
+    { label: 'Dashboard', link: '/' },
+    { label: 'Adicionar Funcionário', link: '/clientes/add'}
   ];
 
   profile: Observable<PoToolbarProfile>;
