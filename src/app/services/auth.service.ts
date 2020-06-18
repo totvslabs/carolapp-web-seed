@@ -87,11 +87,7 @@ export class AuthService {
     let origin;
     let url;
 
-    let redirect = encodeURI(location.origin + location.pathname);
-
-    if (redirect[redirect.length - 1] === '/') {
-      redirect = redirect.substr(0, redirect.length - 1);
-    }
+    let redirect = encodeURI(location.pathname);
 
     if (isDevMode()) {
       origin = conf['/api/*'].target;
