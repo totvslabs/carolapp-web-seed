@@ -87,12 +87,13 @@ export class AuthService {
     let origin;
     let url;
 
-    let redirect = encodeURI(location.pathname);
 
     if (isDevMode()) {
+      let redirect = encodeURI(location.origin + location.pathname);
       origin = conf['/api/*'].target;
       url = `${origin}/auth/?redirect=${redirect}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
     } else {
+      let redirect = encodeURI(location.pathname);
       origin = location.origin;
       url = `${origin}/auth/?redirect=${redirect}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
     }
