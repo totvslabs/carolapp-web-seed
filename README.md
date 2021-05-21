@@ -23,8 +23,6 @@ The project was generated with [Angular CLI](https://github.com/angular/angular-
 3. Install Angular as a global dependency: `npm install -g @angular/cli`
 4. Install the project dependencies: `npm install`
 5. Set your tenant in the file `proxy.conf.json`
-6. Run the command `npm run update-datamodels` to generate the classes for the data models available in your tenant
-7. Start coding
 
 ## Development server
 
