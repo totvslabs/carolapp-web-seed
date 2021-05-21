@@ -24,10 +24,29 @@ export class AppComponent implements OnInit {
     this.auth.sessionObservable.subscribe();
 
     if (this.getParameterByName('handoff')) {
-      localStorage.setItem(this.auth.getTokenName(), this.getParameterByName('handoff'));
+      localStorage.setItem(
+        this.auth.getTokenName(),
+        this.getParameterByName('handoff')
+      );
       this.updateQueryStringParam('handoff', null);
+    } else {
+      let idToken;
+      if (this.utils.getOrganization()) {
+        idToken = localStorage.getItem(this.auth.getTokenName());
+      } else {
+        idToken = localStorage.getItem('carol-token');
+      }
+  
+      if (idToken) {
+        idToken = idToken.replace(/\"/g, '');
+        localStorage.setItem(
+          this.auth.getTokenName(),
+          idToken
+        );
+      } else {
+        this.auth.goToLogin();
+      }
     }
-
   }
 
   private getParameterByName(name) {

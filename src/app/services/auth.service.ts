@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
-import { Router } from '@angular/router';
 import { PoToolbarProfile } from '@po-ui/ng-components';
 import { Observable, Observer } from 'rxjs';
 
@@ -15,7 +14,6 @@ export class AuthService {
   sessionObserver: Observer<PoToolbarProfile>;
 
   constructor(
-    private router: Router,
     private utilsService: UtilsService,
     private httpClient: HttpClient
   ) {
@@ -50,7 +48,21 @@ export class AuthService {
   }
 
   logout() {
-    this.httpClient.post('/api/v1/oauth2/logout', {}).subscribe(() => {
+    const token = localStorage.getItem(this.getTokenName());
+
+    const body = { 
+      'access_token': token
+    };
+
+    this.httpClient.post(
+      '/api/v1/oauth2/logout',
+      body,
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+    ).subscribe(() => {
       localStorage.clear();
       this.goToLogin(true);
     });
