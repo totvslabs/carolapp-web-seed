@@ -10,12 +10,11 @@ The project was generated with [Angular CLI](https://github.com/angular/angular-
 
 ### Included Features/Configurations
 
-1. Ability to easily change the target Tenant. For this edit the file `proxy.conf.json` in the root of the project.
-2. Authentication page. 
+1. You can easily change the target Tenant. For this edit the file `proxy.conf.json` in the root of the project.
+2. Authentication flow. 
 3. An interceptor that will automatically add the auth token in every HTTP request.
 4. PO-UI is ready to use.
 5. A script that will connect to your tenant, download the Data Models schema and generate Typescript classes so you have typings in the FE.
-6. A service called `carol.service.ts` which wraps the logic to build queries, save and delete data.
 
 ### Steps to start building a Carol App
 
@@ -26,84 +25,6 @@ The project was generated with [Angular CLI](https://github.com/angular/angular-
 5. Set your tenant in the file `proxy.conf.json`
 6. Run the command `npm run update-datamodels` to generate the classes for the data models available in your tenant
 7. Start coding
-
-### How to GET data from Carol
-
-The easiest way to get data from Carol is generating the Data Models and using the built-in Carol service, it should support the most common types of Queries.
-
-Inject the Carol service:
-
-```javascript
-  import { Carol } from 'src/app/services/carol.service';
-  
-  constructor(
-    private carol: Carol
-  ) {}
-```
-
-Build a query using the Data Models generated:
-
-```javascript
-  this.carol.query<Customer>()
-      .from(Customer)
-      .and(Customer.mdmGoldenFieldAndValues.mdmname).equals('John')
-      .pageSize(1)
-      .execute()
-      .subscribe(response => {
-        ...
-      });
-```
-
-To save a Golden record you can also use the Carol service:
-
-```javascript
-  const customer = new Customer();
-  customer.mdmGoldenFieldAndValues.mdmname = 'John';
-  
-  this.carol.postGolden(Customer, customer.mdmGoldenFieldAndValues)
-      .subscribe(response => {
-        ...
-      });
-```
-
-To update a golden record:
-```javascript
-  const customer: Customer;
-  customer.mdmGoldenFieldAndValues.mdmname = 'John';
-  
-  this.carol.updateGolden(Customer, customer.mdmId, customer.mdmGoldenFieldAndValues)
-      .subscribe(response => {
-        ...
-      });
-```
-
-To delete a golden record:
-```javascript
-  const customer: Customer;
-    
-  this.carol.deleteGolden(Customer, customer.mdmId).subscribe(response => ...);
-```
-
-To run a Named Query:
-```javascript
-  this.carol.query()
-    .named('myNamedQuery')
-    .params({
-      name: 'John'
-    })
-    .execute()
-    .subscribe(response => {
-      ...
-    });
-```
-
-## Roadmap
-
-1. Keep the dependencies up-to-date
-2. Improve the Query builder with more complex Aggregations
-3. Improve the Documentation
-4. Generate model for Named Queries and Type named queries response
-5. Automate the process to deploy the app
 
 ## Development server
 
