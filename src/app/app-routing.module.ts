@@ -3,19 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './routes/home/home.component';
 import { BaseComponent } from './routes/base/base.component';
 
-
 const routes: Routes = [
-  { path: '', component: BaseComponent, children: [
-    { path: '', component: HomeComponent }
-  ]}
+  {
+    path: '',
+    component: BaseComponent,
+    children: [{ path: '', component: HomeComponent }],
+  },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

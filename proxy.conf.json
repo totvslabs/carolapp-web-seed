@@ -3,9 +3,9 @@
   "organization": "frontend",
   "environment": "andredev",
   "/api/*": {
-      "target": "https://frontend.carol.ai",
-      "secure": true,
-      "logLevel": "debug",
-      "changeOrigin": true
+    "target": "https://frontend.carol.ai",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
   }
 }

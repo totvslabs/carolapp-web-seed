@@ -1,7 +1,11 @@
 import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { PoMenuModule, PoPageModule, PoToolbarModule } from '@po-ui/ng-components';
+import {
+  PoMenuModule,
+  PoPageModule,
+  PoToolbarModule,
+} from '@po-ui/ng-components';
 
 import { AppComponent } from './app.component';
 
@@ -12,11 +16,9 @@ describe('AppComponent', () => {
         PoMenuModule,
         PoPageModule,
         PoToolbarModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
     }).compileComponents();
   }));
 
@@ -26,5 +28,4 @@ describe('AppComponent', () => {
 
     expect(app).toBeTruthy();
   });
-
 });

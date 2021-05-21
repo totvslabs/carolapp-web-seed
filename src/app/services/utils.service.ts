@@ -3,10 +3,9 @@ import { Injectable, isDevMode } from '@angular/core';
 import * as configs from '../../../proxy.conf.json';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UtilsService {
-
   private objConnectors: any;
 
   getConnectorIdDefault(): string {
@@ -30,7 +29,9 @@ export class UtilsService {
       return configs['environment'];
     } else {
       const environment = window.location.pathname.split('/')[1];
-      return environment === 'apps' ? window.location.host.split('.')[0] : environment;
+      return environment === 'apps'
+        ? window.location.host.split('.')[0]
+        : environment;
     }
   }
 

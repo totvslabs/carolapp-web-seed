@@ -4,7 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { PoFieldModule, PoMenuModule, PoModule, PoPageModule, PoToolbarModule } from '@po-ui/ng-components';
+import {
+  PoFieldModule,
+  PoMenuModule,
+  PoModule,
+  PoPageModule,
+  PoToolbarModule,
+} from '@po-ui/ng-components';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,11 +19,7 @@ import { HomeComponent } from './routes/home/home.component';
 import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    BaseComponent
-  ],
+  declarations: [AppComponent, HomeComponent, BaseComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -29,15 +31,15 @@ import { AuthInterceptor } from './services/auth.interceptor';
     FormsModule,
     PoModule,
     RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

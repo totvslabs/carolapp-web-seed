@@ -7,17 +7,13 @@ import { UtilsService } from './services/utils.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-
-  constructor(
-    private auth: AuthService,
-    private utils: UtilsService
-  ) {}
+  constructor(private auth: AuthService, private utils: UtilsService) {}
 
   readonly menus: Array<PoMenuItem> = [
-    { label: 'Home', action: this.onClick.bind(this) }
+    { label: 'Home', action: this.onClick.bind(this) },
   ];
 
   ngOnInit() {
@@ -36,13 +32,10 @@ export class AppComponent implements OnInit {
       } else {
         idToken = localStorage.getItem('carol-token');
       }
-  
+
       if (idToken) {
         idToken = idToken.replace(/\"/g, '');
-        localStorage.setItem(
-          this.auth.getTokenName(),
-          idToken
-        );
+        localStorage.setItem(this.auth.getTokenName(), idToken);
       } else {
         this.auth.goToLogin();
       }
@@ -60,16 +53,19 @@ export class AppComponent implements OnInit {
   }
 
   private updateQueryStringParam(key, value) {
-
-    var baseUrl = [location.protocol, '//', location.host, location.pathname].join(''),
+    var baseUrl = [
+        location.protocol,
+        '//',
+        location.host,
+        location.pathname,
+      ].join(''),
       urlQueryString = document.location.search,
       newParam = key + '=' + value,
       params = '?' + newParam;
 
     if (urlQueryString) {
-
-      const updateRegex = new RegExp('([\?&])' + key + '[^&]*');
-      const removeRegex = new RegExp('([\?&])' + key + '=[^&;]+[&;]?');
+      const updateRegex = new RegExp('([?&])' + key + '[^&]*');
+      const removeRegex = new RegExp('([?&])' + key + '=[^&;]+[&;]?');
 
       if (typeof value == 'undefined' || value == null || value == '') {
         params = urlQueryString.replace(removeRegex, '$1');
@@ -83,9 +79,7 @@ export class AppComponent implements OnInit {
     window.history.replaceState({}, '', baseUrl + params);
   }
 
-
   private onClick() {
-    alert('Clicked in menu item')
+    alert('Clicked in menu item');
   }
-
 }

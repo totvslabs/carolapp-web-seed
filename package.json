@@ -7,7 +7,13 @@
     "build": "ng build --prod --aot --source-map=false --optimization=true --buildOptimizer=true ",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "pretty": "prettier --write \"./**/*.{js,jsx,json,ts}\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged --verbose"
+    }
   },
   "private": true,
   "dependencies": {
@@ -33,6 +39,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^6.0.0",
+    "husky": "^4.3.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -40,6 +47,8 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "prettier": "^2.2.0",
+    "pretty-quick": "^3.1.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.10.1",
     "tslint": "~6.1.0",

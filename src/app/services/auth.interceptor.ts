@@ -1,4 +1,9 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
@@ -7,22 +12,24 @@ import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthInterceptor implements HttpInterceptor {
+  constructor(private router: Router, private authService: AuthService) {}
 
-  constructor(private router: Router,
-    private authService: AuthService) {}
-
-  intercept(req: HttpRequest<any>,
-    next: HttpHandler): Observable<HttpEvent<any>> {
-
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const idToken = localStorage.getItem(this.authService.getTokenName());
 
     let newReq = req;
     if (idToken) {
       newReq = req.clone({
-        headers: req.headers.set('Authorization', 'Bearer ' + idToken.replace(/\"/g, ''))
+        headers: req.headers.set(
+          'Authorization',
+          'Bearer ' + idToken.replace(/\"/g, '')
+        ),
       });
     }
     return next.handle(newReq).pipe(

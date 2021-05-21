@@ -5,16 +5,15 @@ import { PoToolbarProfile, PoToolbarAction } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-base',
-  templateUrl: './base.component.html'
+  templateUrl: './base.component.html',
 })
 export class BaseComponent {
-
   menus = [
     { label: 'Page 1', link: './' },
     { label: 'Page 2', link: './' },
     { label: 'Page 3', link: './' },
     { label: 'Page 4', link: './' },
-    { label: 'Page 5', link: './' }
+    { label: 'Page 5', link: './' },
   ];
 
   profile: Observable<PoToolbarProfile>;
@@ -25,14 +24,11 @@ export class BaseComponent {
       label: 'Exit',
       type: 'danger',
       separator: true,
-      action: item => this.authService.logout()
-    }
+      action: (item) => this.authService.logout(),
+    },
   ];
 
-  constructor(
-    private authService: AuthService,
-  ) {
+  constructor(private authService: AuthService) {
     this.profile = this.authService.sessionObservable;
   }
-
 }
