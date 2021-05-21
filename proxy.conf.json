@@ -1,9 +1,9 @@
 {
   "connectorId": "0a0829172fc2433c9aa26460c31b78f0",
-  "organization": "totvsdevelop",
-  "environment": "totvslabsdevelop",
+  "organization": "frontend",
+  "environment": "andredev",
   "/api/*": {
-      "target": "https://totvsdevelop.qarol.ai",
+      "target": "https://andredev.carol.ai",
       "secure": true,
       "logLevel": "debug",
       "changeOrigin": true
