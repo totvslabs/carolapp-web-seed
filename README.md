@@ -19,7 +19,7 @@ The project was generated with [Angular CLI](https://github.com/angular/angular-
 ### Steps to start building a Carol App
 
 1. Install [Node.js](https://nodejs.org/en/download/)
-2. Clone this repo `git clone https://github.com/totvslabs/carolapp-std-tface`
+2. Clone this repo `git clone https://github.com/totvslabs/carolapp-web-seed`
 3. Install Angular as a global dependency: `npm install -g @angular/cli`
 4. Install the project dependencies: `npm install`
 5. Set your tenant in the file `proxy.conf.json`
