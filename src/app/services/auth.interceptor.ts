@@ -1,7 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { httpClient } from '@carol/carol-sdk/lib/http-client';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -18,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const idToken = httpClient.authToken;
+    const idToken = localStorage.getItem(this.authService.getTokenName());
 
     let newReq = req;
     if (idToken) {

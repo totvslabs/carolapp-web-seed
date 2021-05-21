@@ -3,7 +3,7 @@
   "organization": "frontend",
   "environment": "andredev",
   "/api/*": {
-      "target": "https://andredev.carol.ai",
+      "target": "https://frontend.carol.ai",
       "secure": true,
       "logLevel": "debug",
       "changeOrigin": true

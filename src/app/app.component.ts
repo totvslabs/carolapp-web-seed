@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { carol } from '@carol/carol-sdk/lib/carol';
-import { httpClient } from '@carol/carol-sdk/lib/http-client';
-import { utils } from '@carol/carol-sdk/lib/utils';
 
+import { PoMenuItem } from '@po-ui/ng-components';
 import { AuthService } from './services/auth.service';
 import { UtilsService } from './services/utils.service';
 
@@ -16,40 +13,21 @@ export class AppComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private router: Router,
     private utils: UtilsService
-  ) { }
+  ) {}
+
+  readonly menus: Array<PoMenuItem> = [
+    { label: 'Home', action: this.onClick.bind(this) }
+  ];
 
   ngOnInit() {
     this.auth.sessionObservable.subscribe();
-
-    carol.setOrganization(this.utils.getOrganization());
-    carol.setEnvironment(this.utils.getEnvironment());
 
     if (this.getParameterByName('handoff')) {
       localStorage.setItem(this.auth.getTokenName(), this.getParameterByName('handoff'));
       this.updateQueryStringParam('handoff', null);
     }
 
-    let idToken;
-    if (utils.getOrganization()) {
-      idToken = localStorage.getItem(`carol-${utils.getOrganization()}-${utils.getEnvironment()}-token`);
-    } else {
-      idToken = localStorage.getItem('carol-token');
-    }
-
-    if (idToken) {
-      idToken = idToken.replace(/\"/g, '');
-
-      carol.setAuthToken(idToken);
-    }
-
-
-    httpClient.addInterceptor('auth', (status, response) => {
-      if (status === 401) {
-        this.auth.goToLogin();
-      }
-    });
   }
 
   private getParameterByName(name) {
@@ -84,6 +62,11 @@ export class AppComponent implements OnInit {
       }
     }
     window.history.replaceState({}, '', baseUrl + params);
+  }
+
+
+  private onClick() {
+    alert('Clicked in menu item')
   }
 
 }

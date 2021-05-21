@@ -28,6 +28,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
     PoMenuModule,
     FormsModule,
     PoModule,
+    RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
     RouterModule.forRoot([])
   ],
   providers: [

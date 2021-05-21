@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { carol } from '@carol/carol-sdk/lib/carol';
+
 
 @Component({
   selector: 'app-home',
@@ -7,12 +8,15 @@ import { carol } from '@carol/carol-sdk/lib/carol';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private httpClient: HttpClient
+  ) {
   }
 
   ngOnInit() {
-    carol.select().from('mdmcompany').execute();
-
+    this.httpClient.get('/api/v1/users/current').subscribe(res => {
+      console.log(res);
+    });
   }
 
 }

@@ -1,13 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
-import { carol } from '@carol/carol-sdk/lib/carol';
-import { httpClient } from '@carol/carol-sdk/lib/http-client';
-import { utils } from '@carol/carol-sdk/lib/utils';
 import { PoToolbarProfile } from '@po-ui/ng-components';
-import * as moment from 'moment';
 import { Observable, Observer } from 'rxjs';
 
 import * as conf from '../../../proxy.conf.json';
+import { UtilsService } from './utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +15,9 @@ export class AuthService {
   sessionObserver: Observer<PoToolbarProfile>;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private utilsService: UtilsService,
+    private httpClient: HttpClient
   ) {
     this.sessionObservable = new Observable(observer => {
       this.sessionObserver = observer;
@@ -29,22 +29,17 @@ export class AuthService {
   }
 
   setSession(authResult, user) {
-    carol.setAuthToken(authResult['access_token']);
-
     const tokenName = this.getTokenName();
 
     localStorage.setItem(tokenName, authResult['access_token']);
     localStorage.setItem('user', user);
 
-    const expiresAt = moment().add(authResult['expires_in'], 'second');
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-
     this.sessionObserver.next(this.buildProfile());
   }
 
   getTokenName() {
-    if (utils.getOrganization()) {
-      return `carol-${utils.getOrganization()}-${utils.getEnvironment()}-token`;
+    if (this.utilsService.getOrganization()) {
+      return `carol-${this.utilsService.getOrganization()}-${this.utilsService.getEnvironment()}-token`;
     } else {
       return 'carol-token';
     }
@@ -55,25 +50,10 @@ export class AuthService {
   }
 
   logout() {
-    return carol.logout().then(() => {
+    this.httpClient.post('/api/v1/oauth2/logout', {}).subscribe(() => {
       localStorage.clear();
-
       this.goToLogin(true);
     });
-  }
-
-  isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
-  }
-
-  isLoggedOut() {
-    return !this.isLoggedIn();
-  }
-
-  getExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
   }
 
   buildProfile(): PoToolbarProfile {
@@ -91,11 +71,11 @@ export class AuthService {
     if (isDevMode()) {
       let redirect = encodeURI(location.origin + location.pathname);
       origin = conf['/api/*'].target;
-      url = `${origin}/auth/?redirect=${redirect}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
+      url = `${origin}/auth/?redirect=${redirect}&env=${this.utilsService.getEnvironment()}&org=${this.utilsService.getOrganization()}&logout=${logout}`;
     } else {
       let redirect = encodeURI(location.pathname);
       origin = location.origin;
-      url = `${origin}/auth/?redirect=${redirect}&env=${httpClient.environment}&org=${httpClient.organization}&logout=${logout}`;
+      url = `${origin}/auth/?redirect=${redirect}&env=${this.utilsService.getEnvironment()}&org=${this.utilsService.getOrganization()}&logout=${logout}`;
     }
 
 
