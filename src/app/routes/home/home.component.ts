@@ -6,11 +6,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.httpClient.get('/api/v1/users/current').subscribe((res) => {
-      console.log(res);
-    });
-  }
+  ngOnInit() {}
 }

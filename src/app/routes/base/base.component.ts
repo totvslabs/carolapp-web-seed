@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
 import { PoToolbarProfile, PoToolbarAction } from '@po-ui/ng-components';
+import { CarolAuthService } from 'carol-app-fe-sdk';
 
 @Component({
   selector: 'app-base',
@@ -24,11 +24,9 @@ export class BaseComponent {
       label: 'Exit',
       type: 'danger',
       separator: true,
-      action: (item) => this.authService.logout(),
+      action: () => this.carolAuthService.logout(),
     },
   ];
 
-  constructor(private authService: AuthService) {
-    this.profile = this.authService.sessionObservable;
-  }
+  constructor(private carolAuthService: CarolAuthService) {}
 }
