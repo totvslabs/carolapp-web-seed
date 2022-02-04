@@ -20,6 +20,12 @@ export class BaseComponent {
       icon: 'po-icon-home',
       link: '/'
     },
+    {
+      label: 'Datamodels',
+      shortLabel:' Datamodels',
+      icon: 'po-icon-database',
+      link: '/datamodels'
+    }
   ];
 
   constructor(private carolAuthService: CarolAuthService) {

@@ -10,6 +10,7 @@ import conf from 'proxy.conf.json';
 import { CarolAuthService, CarolSdkModule } from '@totvslabs/carol-app-fe-sdk';
 import { HttpClientModule } from '@angular/common/http';
 import { BaseComponent } from './components/base/base.component';
+import { SampleModule } from './sample/sample.module';
 
 function appInitializer(carolAuth: CarolAuthService) {
   return () =>
@@ -30,6 +31,7 @@ function appInitializer(carolAuth: CarolAuthService) {
   imports: [
     CarolSdkModule,
     HttpClientModule,
+    SampleModule,
     BrowserModule,
     AppRoutingModule,
     PoModule,
