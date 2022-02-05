@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoButtonGroupItem, PoNotificationService } from '@po-ui/ng-components';

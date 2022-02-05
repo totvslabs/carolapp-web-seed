@@ -1,9 +1,20 @@
-<div class="po-row po-mb-3">
-  <div class="po-lg-12">
+<div class="po-row po-mb-3 po-mt-1">
+  <div class="po-lg-12 po-mb-3">
     <p class="banner" [class.info]="isLoggedIn" [class.danger]="!isLoggedIn">
-      <span *ngIf="!isLoggedIn" class="po-icon po-icon-warning"></span>
-      <span *ngIf="isLoggedIn" class="po-icon po-icon-info"></span>
+      <span class="po-icon" [class.po-icon-warning]="!isLoggedIn" [class.po-icon-info]="isLoggedIn"></span>
       {{ infoMessage }}
+    </p>
+  </div>
+
+  <div class="po-lg-12">
+    <p class="po-mb-1">
+      The Carol FE SDK provides methods to interact with the current active session. 
+      <br> Depending on your app's needs, a custom login page can be implemented. 
+      <br> By default, the Carol SSO page is used to control the authentication flow.
+    </p>
+    <p>
+      Use the form below to interact with your current Carol session using the methods from the 
+      <span class="highlight">CarolAuthService</span> class
     </p>
   </div>
 </div>
