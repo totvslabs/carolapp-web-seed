@@ -1,9 +1,14 @@
-<div class="po-row">
+<div class="po-row po-mb-3">
   <div class="po-lg-12">
-    <p>
+    <p class="banner" [class.info]="isLoggedIn" [class.danger]="!isLoggedIn">
+      <span *ngIf="!isLoggedIn" class="po-icon po-icon-warning"></span>
+      <span *ngIf="isLoggedIn" class="po-icon po-icon-info"></span>
       {{ infoMessage }}
     </p>
   </div>
+</div>
+
+<div class="row po-mb-1">
   <div class="po-lg-12">
       <po-switch [(ngModel)]="isSelfLogin"
         p-label="Self Login"
@@ -14,20 +19,18 @@
   </div>
 </div>
 
-<div class="po-row">
+<div class="po-row column align-center">
   <div class="po-lg-4">
-    <po-login p-disabled="isLoggedIn"
-      name="userLogin"
+    <po-login name="userLogin"
       [(ngModel)]="userLogin"
       p-clean
-      p-label="User"
-      p-placeholder="E-mail address"
+      p-label="E-mail"
+      p-placeholder="Enter your e-mail address"
       p-required
     >
     </po-login>
   </div>
-</div>
-<div class="po-row">
+
   <div class="po-lg-4">
     <po-password
       name="userPassword"
@@ -39,19 +42,8 @@
     >
     </po-password>
   </div>
-</div>
-<div class="po-row">
   <div class="po-lg-4">
-    <po-button [p-disabled]="loggingIn || loggingOut"
-      [p-loading]="loggingIn"
-      p-label="Login"
-      (p-click)="login()">
-    </po-button>
-  </div>
-</div>
-
-<div class="po-row">
-  <div class="po-lg-4">
-    <po-button [p-disabled]="loggingIn || loggingOut" [p-loading]="loggingOut" p-label="Logout" (p-click)="logout()"></po-button>
+    <po-button-group [p-buttons]="actionGroupButtons">
+    </po-button-group>
   </div>
 </div>

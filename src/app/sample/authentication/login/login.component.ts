@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { PoButtonGroupItem } from '@po-ui/ng-components';
 import { CarolAuthService } from '@totvslabs/carol-app-fe-sdk';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   readonly SELF_LOGIN_TRUE_LABEL = SELF_LOGIN_TRUE_LABEL;
@@ -16,6 +18,20 @@ export class LoginComponent implements OnInit {
 
   userLogin: string = '';
   userPassword: string = '';
+  actionGroupButtons: Array<PoButtonGroupItem> = [
+    {
+      action: this.login.bind(this),
+      icon: 'po-icon-lock',
+      label: 'Login',
+      tooltip: 'Start a new session with the provided credentials'
+    },
+    {
+      action: this.logout.bind(this),
+      icon: 'po-icon-close',
+      label: 'Logout',
+      tooltip: 'End your session'
+    }
+  ]
 
   infoMessage: string = this.getInfoMessage();
 
@@ -33,18 +49,23 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    this.loggingIn = true;
+    this.setButtonState(true);
     await this.carolAuthService.login(this.userLogin, this.userPassword);
-    this.loggingIn = false;
+    this.setButtonState();
   }
 
   async logout() {
-    this.loggingOut = true;
+    this.setButtonState(true);
+    await this.carolAuthService.logout();
     try {
-      await this.carolAuthService.logout();
+      this.setButtonState();
     } finally {
-      this.loggingOut = false;
+      this.setButtonState();
     }
+  }
+
+  private setButtonState(startingAction?: boolean) {
+    this.actionGroupButtons.forEach(b => b.disabled = startingAction);
   }
 
   private isLoggedInHandler(isLoggedIn: boolean): void {
