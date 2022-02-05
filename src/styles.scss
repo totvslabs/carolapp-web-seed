@@ -19,3 +19,8 @@
 .fade-in {
   animation: fadeIn 0.5s linear;
 }
+
+.po-table-main-container {
+  max-height: 70vh;
+  overflow: auto;
+}

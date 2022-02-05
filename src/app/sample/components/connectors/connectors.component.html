@@ -4,17 +4,20 @@
         <div *ngFor="let connector of connectors" class="po-row">
             <div class="po-lg-12 po-mb-2">
                 <h2>
-                    Connector {{ connector.label }}
+                    {{ connector.label }}
                 </h2>
-            </div>
-            <div class="po-lg-12 po-mb-1">
-                <h3>Stagings</h3>
             </div>
             <po-accordion class="po-lg-12">
                 <po-accordion-item [p-label]="staging.label + ' - ' + staging.ready" *ngFor="let staging of connector.stagingTables">
                     <po-tree-view [p-items]="staging.properties"></po-tree-view>
+                    <po-divider></po-divider>
+                    <po-button (p-click)="runQuery(connector, staging)" p-label="Show records"></po-button>
                 </po-accordion-item>
             </po-accordion>
         </div>
     </section>
 </po-page-default>
+
+<po-modal #recordsModal [p-title]="titleRecordsModal" p-size="xl">
+    <po-table [p-loading]="loadingRecords" [p-items]="currentResults"> </po-table>
+</po-modal>
