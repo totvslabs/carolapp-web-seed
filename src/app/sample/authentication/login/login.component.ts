@@ -64,9 +64,8 @@ export class LoginComponent implements OnInit {
     }
 
     this.setButtonState(true);
-    await this.carolAuthService.logout();
     try {
-      this.setButtonState();
+      await this.carolAuthService.logout();
     } finally {
       this.setButtonState();
     }
