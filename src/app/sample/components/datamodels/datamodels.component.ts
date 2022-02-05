@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PoModalComponent } from '@po-ui/ng-components';
-import { CarolDatamodelsService, CarolSqlQueryService, Datamodel, DatamodelLabels } from '@totvslabs/carol-app-fe-sdk';
+import { CarolDatamodelsService, CarolSqlQueryService, Datamodel } from '@totvslabs/carol-app-fe-sdk';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -38,7 +38,7 @@ export class DatamodelsComponent implements OnInit {
 
   openModal(e: DatamodelRender) {
     this.currentResults = [];
-    this.titleRecordsModal = e.name as string;
+    this.titleRecordsModal = e.name;
     this.getRecords(e);
     this.recordsModalElement?.open();
   }
@@ -55,10 +55,9 @@ export class DatamodelsComponent implements OnInit {
   }
 
   private async prepareDatamodel(dm: Datamodel): Promise<DatamodelRender> {
-    const tablePreview = await firstValueFrom(this.sqlService.tablePreview(dm.name as string));
-    debugger
+    const tablePreview = await firstValueFrom(this.sqlService.tablePreview(dm.name));
 
-    const labels = dm.labels as DatamodelLabels;
+    const labels = dm.labels;
     return {
       ...dm,
       label: Object.values(labels)[0],
