@@ -1,27 +1,29 @@
-<po-page-default
-    p-title="Datamodels" >
-    <app-loader *ngIf="loadingDatamodels"></app-loader>
-    <section *ngIf="!loadingDatamodels">
-        <po-widget *ngFor="let datamodel of datamodels"
-            class="po-row po-mb-2"
-            [p-title]="datamodel.label"
-            p-primary-label="Show records"
-            (p-primary-action)="openModal(datamodel)"
-        >
-            <h4>
-                {{datamodel.name}}
-            </h4>
-            <p>
-                This Data Model currently has 
-                <strong>
-                    {{ datamodel.totalRecords| number }}
-                </strong>
-                 records
-            </p>
-        </po-widget>
-    </section>
-</po-page-default>
-
-<po-modal #recordsModal [p-title]="titleRecordsModal" p-size="xl">
-    <po-table [p-loading]="loadingRecords" [p-items]="currentResults"> </po-table>
-</po-modal>
+<app-authenticated-wrapper>
+    <po-page-default
+        p-title="Datamodels" >
+        <app-loader *ngIf="loadingDatamodels"></app-loader>
+        <section *ngIf="!loadingDatamodels">
+            <po-widget *ngFor="let datamodel of datamodels"
+                class="po-row po-mb-2"
+                [p-title]="datamodel.label"
+                p-primary-label="Show records"
+                (p-primary-action)="openModal(datamodel)"
+            >
+                <h4>
+                    {{datamodel.name}}
+                </h4>
+                <p>
+                    This Data Model currently has 
+                    <strong>
+                        {{ datamodel.totalRecords| number }}
+                    </strong>
+                     records
+                </p>
+            </po-widget>
+        </section>
+    </po-page-default>
+    
+    <po-modal #recordsModal [p-title]="titleRecordsModal" p-size="xl">
+        <po-table [p-loading]="loadingRecords" [p-items]="currentResults"> </po-table>
+    </po-modal>
+</app-authenticated-wrapper>

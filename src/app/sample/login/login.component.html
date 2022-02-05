@@ -1,0 +1,52 @@
+<po-page-default>
+  <div class="po-row">
+    <div class="po-lg-12">
+      <p>
+        {{ infoMessage }}
+      </p>
+    </div>
+    <div class="po-lg-12">
+      <po-checkbox [p-label]="checkboxLabel"
+        [(ngModel)]="isSelfLogin"
+        (ngModelChange)="onChangeSelfLogin($event)"></po-checkbox>
+    </div>
+  </div>
+
+  <div class="po-row">
+    <div class="po-lg-4">
+      <po-login p-disabled="isLoggedIn"
+        name="userLogin"
+        [(ngModel)]="userLogin"
+        p-clean
+        p-label="User"
+        p-placeholder="E-mail address"
+        p-required
+      >
+      </po-login>
+    </div>
+  </div>
+  <div class="po-row">
+    <div class="po-lg-4">
+      <po-password
+        name="userPassword"
+        [(ngModel)]="userPassword"
+        p-clean
+        p-label="Password"
+        p-placeholder="Enter your password"
+        p-required
+      >
+      </po-password>
+    </div>
+  </div>
+  <div class="po-row">
+    <div class="po-lg-4">
+      <po-button [p-disabled]="loggingIn || loggingOut" [p-loading]="loggingIn" p-label="Authenticate" (p-click)="login()"></po-button>
+    </div>
+  </div>
+
+  <div class="po-row">
+    <div class="po-lg-4">
+      <po-button [p-disabled]="loggingIn || loggingOut" [p-loading]="loggingOut" p-label="Logout" (p-click)="logout()"></po-button>
+    </div>
+  </div>
+</po-page-default>

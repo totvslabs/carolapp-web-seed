@@ -32,6 +32,12 @@ export class BaseComponent {
       icon: 'po-icon-handshake',
       link: '/connectors'
     },
+    {
+      label: 'Login',
+      shortLabel:' Login',
+      icon: 'po-icon-lock',
+      link: '/login'
+    },
   ];
 
   constructor(private carolAuthService: CarolAuthService) {

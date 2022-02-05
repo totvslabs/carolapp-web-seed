@@ -7,6 +7,9 @@ import { DatamodelsComponent } from './components/datamodels/datamodels.componen
 import { HomeComponent } from './components/home/home.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ConnectorsComponent } from './components/connectors/connectors.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { AuthenticatedWrapperComponent } from './components/authenticated-wrapper/authenticated-wrapper.component';
 
 @NgModule({
   imports: [
@@ -14,12 +17,15 @@ import { ConnectorsComponent } from './components/connectors/connectors.componen
     PoModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
   ],
   exports: [],
   declarations: [
     HomeComponent,
     ConnectorsComponent,
     DatamodelsComponent,
+    LoginComponent,
+    AuthenticatedWrapperComponent,
     LoaderComponent
   ],
   providers: [],
