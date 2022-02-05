@@ -33,10 +33,10 @@ export class BaseComponent {
       link: '/connectors'
     },
     {
-      label: 'Login',
-      shortLabel:' Login',
+      label: 'Authentication',
+      shortLabel:' Authentication',
       icon: 'po-icon-lock',
-      link: '/login'
+      link: '/authentication'
     },
   ];
 

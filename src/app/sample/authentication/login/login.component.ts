@@ -3,9 +3,9 @@ import { CarolAuthService } from '@totvslabs/carol-app-fe-sdk';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
+
 export class LoginComponent implements OnInit {
   isLoggedIn: boolean = true;
   isSelfLogin = this.carolAuthService.selfLogin;

@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
+import { AuthenticationComponent } from './authentication/authentication.component';
 import { ConnectorsComponent } from './components/connectors/connectors.component';
 import { DatamodelsComponent } from './components/datamodels/datamodels.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './login/login.component';
 
 export const sampleModuleRoutes: Routes = [
   {
@@ -18,7 +18,7 @@ export const sampleModuleRoutes: Routes = [
     component: ConnectorsComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'authentication',
+    component: AuthenticationComponent
   }
 ];

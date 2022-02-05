@@ -7,9 +7,12 @@ import { DatamodelsComponent } from './components/datamodels/datamodels.componen
 import { HomeComponent } from './components/home/home.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ConnectorsComponent } from './components/connectors/connectors.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthenticatedWrapperComponent } from './components/authenticated-wrapper/authenticated-wrapper.component';
+import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './authentication/change-password/change-password.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { LoginComponent } from './authentication/login/login.component';
 
 @NgModule({
   imports: [
@@ -26,6 +29,9 @@ import { AuthenticatedWrapperComponent } from './components/authenticated-wrappe
     DatamodelsComponent,
     LoginComponent,
     AuthenticatedWrapperComponent,
+    AuthenticationComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
     LoaderComponent
   ],
   providers: [],
