@@ -7,18 +7,18 @@ import { HomeComponent } from './components/home/home.component';
 export const sampleModuleRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'datamodels',
-    component: DatamodelsComponent
+    component: DatamodelsComponent,
   },
   {
     path: 'connectors',
-    component: ConnectorsComponent
+    component: ConnectorsComponent,
   },
   {
     path: 'authentication',
-    component: AuthenticationComponent
-  }
+    component: AuthenticationComponent,
+  },
 ];

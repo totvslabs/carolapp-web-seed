@@ -1,13 +1,32 @@
 <po-page-default>
   <po-tabs>
-    <po-tab (p-click)="selectedTab=Tabs.LOGIN" p-label="Login" [p-active]="selectedTab === Tabs.LOGIN">
+    <po-tab
+      (p-click)="selectedTab = Tabs.LOGIN"
+      p-label="Login"
+      [p-active]="selectedTab === Tabs.LOGIN"
+    >
       <app-login class="fade-in" *ngIf="selectedTab === Tabs.LOGIN"></app-login>
     </po-tab>
-    <po-tab (p-click)="selectedTab=Tabs.FORGOT_PASS" p-label="Forgot Password" [p-active]="selectedTab === Tabs.FORGOT_PASS">
-      <app-forgot-password class="fade-in" *ngIf="selectedTab === Tabs.FORGOT_PASS"></app-forgot-password>
+    <po-tab
+      (p-click)="selectedTab = Tabs.FORGOT_PASS"
+      p-label="Forgot Password"
+      [p-active]="selectedTab === Tabs.FORGOT_PASS"
+    >
+      <app-forgot-password
+        class="fade-in"
+        *ngIf="selectedTab === Tabs.FORGOT_PASS"
+      ></app-forgot-password>
     </po-tab>
-      <po-tab (p-click)="selectedTab=Tabs.RESET_PASS" p-label="Reset Password" [p-active]="selectedTab === Tabs.RESET_PASS">
-        <app-reset-password (changeTab)="selectedTab=$event" class="fade-in" *ngIf="selectedTab === Tabs.RESET_PASS"></app-reset-password>
-      </po-tab>
+    <po-tab
+      (p-click)="selectedTab = Tabs.RESET_PASS"
+      p-label="Reset Password"
+      [p-active]="selectedTab === Tabs.RESET_PASS"
+    >
+      <app-reset-password
+        (changeTab)="selectedTab = $event"
+        class="fade-in"
+        *ngIf="selectedTab === Tabs.RESET_PASS"
+      ></app-reset-password>
+    </po-tab>
   </po-tabs>
 </po-page-default>

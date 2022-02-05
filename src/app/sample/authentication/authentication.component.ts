@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.scss']
+  styleUrls: ['./authentication.component.scss'],
 })
 export class AuthenticationComponent implements OnInit {
   readonly Tabs = Tabs;
@@ -15,14 +15,12 @@ export class AuthenticationComponent implements OnInit {
       this.selectedTab = Tabs.RESET_PASS;
     }
   }
-  
-  ngOnInit(): void {
-      
-  }
+
+  ngOnInit(): void {}
 }
 
 export enum Tabs {
   LOGIN = 'LOGIN',
   FORGOT_PASS = 'FORGOT_PASS',
-  RESET_PASS = 'RESET_PASS'
+  RESET_PASS = 'RESET_PASS',
 }

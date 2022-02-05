@@ -3,18 +3,20 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
-
 export class HomeComponent implements OnInit {
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   openDocs() {
-    window.open('https://www.npmjs.com/package/@totvslabs/carol-app-fe-sdk', '_blank');
+    window.open(
+      'https://www.npmjs.com/package/@totvslabs/carol-app-fe-sdk',
+      '_blank'
+    );
   }
-  
+
   openCarolDocs() {
     window.open('https://docs.carol.ai/', '_blank');
   }

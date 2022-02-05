@@ -6,9 +6,8 @@ import { Tabs } from '../authentication.component';
 
 @Component({
   selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html'
+  templateUrl: './reset-password.component.html',
 })
-
 export class ResetPasswordComponent implements OnInit {
   readonly token = this.route.snapshot.queryParams['passwordResetToken'];
   readonly invalid = !this.token;
@@ -21,9 +20,9 @@ export class ResetPasswordComponent implements OnInit {
       action: this.resetPassword.bind(this),
       icon: 'po-icon-refresh',
       label: 'Reset password',
-      disabled: this.invalid
-    }
-  ]
+      disabled: this.invalid,
+    },
+  ];
 
   @Output('changeTab')
   changeTab: EventEmitter<Tabs> = new EventEmitter();
@@ -33,7 +32,7 @@ export class ResetPasswordComponent implements OnInit {
     private notificationService: PoNotificationService,
     private carolAuthService: CarolAuthService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {}
 
@@ -43,12 +42,16 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     if (this.newPassword.length < 5) {
-      this.notificationService.information('Your new password must be at least 5 characters long');
+      this.notificationService.information(
+        'Your new password must be at least 5 characters long'
+      );
       return;
     }
 
     if (this.newPassword !== this.newPasswordConfirmation) {
-      this.notificationService.information('Your new password must match the confirmation');
+      this.notificationService.information(
+        'Your new password must match the confirmation'
+      );
       return;
     }
 
@@ -56,20 +59,24 @@ export class ResetPasswordComponent implements OnInit {
 
     try {
       await this.carolAuthService.resetPassword(this.newPassword, this.token);
-      this.notificationService.success('You have successfully reset your password. You will be redirected in 3 seconds');
+      this.notificationService.success(
+        'You have successfully reset your password. You will be redirected in 3 seconds'
+      );
     } catch (err: any) {
       if (err && err.error.errorCode === 400) {
         this.notificationService.error(err.error.errorMessage);
       } else if (err && err.error.errorCode === 404) {
         this.notificationService.error('Token to change password not found.');
       } else {
-        this.notificationService.error('Carol is having communication issues, please try it again later.');
+        this.notificationService.error(
+          'Carol is having communication issues, please try it again later.'
+        );
       }
     } finally {
       setTimeout(() => {
         this.router.navigate(['/authentication'], { queryParams: {} });
-        this.changeTab.emit(Tabs.LOGIN)
-      }, 3000)
+        this.changeTab.emit(Tabs.LOGIN);
+      }, 3000);
     }
   }
 }

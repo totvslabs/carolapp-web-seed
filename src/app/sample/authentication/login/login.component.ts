@@ -5,7 +5,7 @@ import { CarolAuthService } from '@totvslabs/carol-app-fe-sdk';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   readonly SELF_LOGIN_TRUE_LABEL = SELF_LOGIN_TRUE_LABEL;
@@ -23,24 +23,24 @@ export class LoginComponent implements OnInit {
       action: this.login.bind(this),
       icon: 'po-icon-lock',
       label: 'Login',
-      tooltip: 'Start a new session with the provided credentials'
+      tooltip: 'Start a new session with the provided credentials',
     },
     {
       action: this.logout.bind(this),
       icon: 'po-icon-exit',
       label: 'Logout',
-      tooltip: 'End your session'
-    }
-  ]
+      tooltip: 'End your session',
+    },
+  ];
 
   infoMessage: string = this.getInfoMessage();
 
-  constructor(
-    public carolAuthService: CarolAuthService
-  ) { }
+  constructor(public carolAuthService: CarolAuthService) {}
 
   ngOnInit() {
-    this.carolAuthService.loggedIn$.subscribe(this.isLoggedInHandler.bind(this))
+    this.carolAuthService.loggedIn$.subscribe(
+      this.isLoggedInHandler.bind(this)
+    );
     this.carolAuthService.setSelfLogin(true);
   }
 
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
   }
 
   private setButtonState(startingAction?: boolean) {
-    this.actionGroupButtons.forEach(b => b.disabled = startingAction);
+    this.actionGroupButtons.forEach((b) => (b.disabled = startingAction));
   }
 
   private isLoggedInHandler(isLoggedIn: boolean): void {
@@ -87,7 +87,9 @@ export class LoginComponent implements OnInit {
 }
 
 const SELF_LOGIN_TRUE_LABEL = `Self login is set to TRUE. Nothing will happen after logging out except for a message in the 'loggedIn$' Observable`;
-const SELF_LOGIN_FALSE_LABEL = 'Self login is set to FALSE. You will be redirected to the SSO page after logging out';
+const SELF_LOGIN_FALSE_LABEL =
+  'Self login is set to FALSE. You will be redirected to the SSO page after logging out';
 
 const LOGGED_IN_INFO = 'You are currently logged in';
-const LOGGED_OUT_INFO = 'You are currently NOT logged in. Requests to the Carol Platform may result in 401 exceptions';
+const LOGGED_OUT_INFO =
+  'You are currently NOT logged in. Requests to the Carol Platform may result in 401 exceptions';

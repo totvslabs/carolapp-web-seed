@@ -26,10 +26,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.png",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.png", "src/assets"],
             "styles": [
               "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "src/styles.scss"
@@ -78,7 +75,7 @@
             "development": {
               "browserTarget": "carol-app-fe-seed:build:development",
               "proxyConfig": "proxy.conf.json"
-            },
+            }
           },
           "defaultConfiguration": "development"
         },
@@ -96,10 +93,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.png",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.png", "src/assets"],
             "styles": [
               "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "src/styles.scss"

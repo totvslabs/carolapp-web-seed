@@ -24,10 +24,7 @@ function appInitializer(carolAuth: CarolAuthService) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BaseComponent
-  ],
+  declarations: [AppComponent, BaseComponent],
   imports: [
     CarolSdkModule,
     HttpClientModule,
@@ -35,16 +32,16 @@ function appInitializer(carolAuth: CarolAuthService) {
     BrowserModule,
     AppRoutingModule,
     PoModule,
-    RouterModule.forRoot([], {useHash: true})
+    RouterModule.forRoot([], { useHash: true }),
   ],
   providers: [
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
       deps: [CarolAuthService],
-      multi: true
+      multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

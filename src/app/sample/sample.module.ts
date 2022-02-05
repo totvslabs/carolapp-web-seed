@@ -32,8 +32,8 @@ import { ResetPasswordComponent } from './authentication/reset-password/reset-pa
     AuthenticationComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   providers: [],
 })
-export class SampleModule { }
+export class SampleModule {}

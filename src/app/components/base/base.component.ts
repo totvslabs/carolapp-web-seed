@@ -10,36 +10,35 @@ export class BaseComponent {
   readonly profileActions: PoToolbarAction[] = [
     {
       label: 'Logout',
-      action: () => this.carolAuthService.logout()
-    }
-  ]
+      action: () => this.carolAuthService.logout(),
+    },
+  ];
   readonly menus: Array<PoMenuItem> = [
-    { 
+    {
       label: 'Home',
       shortLabel: 'Home',
       icon: 'po-icon-home',
-      link: '/'
+      link: '/',
     },
     {
       label: 'Datamodels',
-      shortLabel:' Datamodels',
+      shortLabel: ' Datamodels',
       icon: 'po-icon-database',
-      link: '/datamodels'
+      link: '/datamodels',
     },
     {
       label: 'Connectors',
-      shortLabel:' Connectors',
+      shortLabel: ' Connectors',
       icon: 'po-icon-handshake',
-      link: '/connectors'
+      link: '/connectors',
     },
     {
       label: 'Authentication',
-      shortLabel:' Authentic.',
+      shortLabel: ' Authentic.',
       icon: 'po-icon-lock',
-      link: '/authentication'
+      link: '/authentication',
     },
   ];
 
-  constructor(private carolAuthService: CarolAuthService) {
-  }
+  constructor(private carolAuthService: CarolAuthService) {}
 }

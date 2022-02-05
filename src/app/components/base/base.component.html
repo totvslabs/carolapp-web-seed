@@ -1,13 +1,14 @@
 <div class="po-wrapper">
-  <po-toolbar p-title="Carol App Web Seed"
+  <po-toolbar
+    p-title="Carol App Web Seed"
     [p-profile-actions]="profileActions"
   ></po-toolbar>
-  
-  <po-menu [p-menus]="menus"
+
+  <po-menu
+    [p-menus]="menus"
     [p-collapsed]="true"
     p-short-logo="assets/totvs-logo-short.svg"
   ></po-menu>
-  
-  <router-outlet class="fade-in"></router-outlet>
 
+  <router-outlet class="fade-in"></router-outlet>
 </div>
