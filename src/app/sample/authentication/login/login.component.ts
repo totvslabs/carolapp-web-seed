@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     },
     {
       action: this.logout.bind(this),
-      icon: 'po-icon-close',
+      icon: 'po-icon-exit',
       label: 'Logout',
       tooltip: 'End your session'
     }
@@ -49,12 +49,20 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
+    if (!this.userLogin || !this.userPassword) {
+      return;
+    }
+
     this.setButtonState(true);
     await this.carolAuthService.login(this.userLogin, this.userPassword);
     this.setButtonState();
   }
 
   async logout() {
+    if (!this.isLoggedIn) {
+      return;
+    }
+
     this.setButtonState(true);
     await this.carolAuthService.logout();
     try {

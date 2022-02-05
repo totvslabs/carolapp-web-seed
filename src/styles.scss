@@ -24,3 +24,11 @@
   max-height: 70vh;
   overflow: auto;
 }
+
+.column {
+  flex-direction: column;
+}
+
+.align-center {
+  align-content: center;
+}
