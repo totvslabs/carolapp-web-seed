@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -9,15 +10,19 @@ export class AuthenticationComponent implements OnInit {
   readonly Tabs = Tabs;
   selectedTab: Tabs = Tabs.LOGIN;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {
+    if (this.route.snapshot.queryParams['passwordResetToken']) {
+      this.selectedTab = Tabs.RESET_PASS;
+    }
+  }
   
   ngOnInit(): void {
       
   }
 }
 
-enum Tabs {
+export enum Tabs {
   LOGIN = 'LOGIN',
   FORGOT_PASS = 'FORGOT_PASS',
-  CHANGE_PASS = 'CHANGE_PASS'
+  RESET_PASS = 'RESET_PASS'
 }

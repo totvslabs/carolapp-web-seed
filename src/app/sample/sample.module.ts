@@ -10,9 +10,9 @@ import { ConnectorsComponent } from './components/connectors/connectors.componen
 import { FormsModule } from '@angular/forms';
 import { AuthenticatedWrapperComponent } from './components/authenticated-wrapper/authenticated-wrapper.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
-import { ChangePasswordComponent } from './authentication/change-password/change-password.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
 
 @NgModule({
   imports: [
@@ -31,7 +31,7 @@ import { LoginComponent } from './authentication/login/login.component';
     AuthenticatedWrapperComponent,
     AuthenticationComponent,
     ForgotPasswordComponent,
-    ChangePasswordComponent,
+    ResetPasswordComponent,
     LoaderComponent
   ],
   providers: [],
