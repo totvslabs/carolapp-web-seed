@@ -2,6 +2,23 @@
     <po-page-default p-title="Connectors">
         <app-loader *ngIf="loadingConnectors"></app-loader>
         <section *ngIf="!loadingConnectors">
+            <div class="po-row po-mb-3">
+                <div class="po-lg-12">
+                    <p class="po-mb-1">
+                        The Carol FE SDK provides you with methods to interact with the Connectors and Staging Tables of your environment. 
+                        <br> Those can be found inside of the <span class="highlight">CarolStagingTablesService</span> class.
+                    </p>
+                    <p class="po-mb-2">
+                        With that data in hand, you can query records from staging tables using the methods available in the <span class="highlight">CarolSqlQueryService</span>
+                        <br> SQL queries that fetch ST records must have their table names in the following format: <span class="highlight">stg_$CONNECTOR_NAME_$STAGING_NAME</span>
+                    </p>
+                    <p>
+                        This sample component will fetch all available connectors and staging tables using the <span class="highlight">getConnectors</span> and <span class="highlight">getStagingTables</span> methods.
+                        <br>
+                        There's a button at the end of each field list. The button click event will call the <span class="highlight">CarolSqlQueryService.runSQL</span> method, which will execute a query that retrieves a list of records from the staging table.
+                    </p>
+                </div>
+            </div>
             <div *ngFor="let connector of connectors" class="po-row">
                 <div class="po-lg-12 po-mb-2">
                     <h2>
