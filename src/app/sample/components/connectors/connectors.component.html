@@ -1,0 +1,6 @@
+<po-page-default p-title="Connectors">
+    <app-loader *ngIf="loadingConnectors"></app-loader>
+    <section *ngIf="!loadingConnectors">
+        {{ connectors | json }}
+    </section>
+</po-page-default>

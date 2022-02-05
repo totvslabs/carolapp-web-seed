@@ -25,7 +25,13 @@ export class BaseComponent {
       shortLabel:' Datamodels',
       icon: 'po-icon-database',
       link: '/datamodels'
-    }
+    },
+    {
+      label: 'Connectors',
+      shortLabel:' Connectors',
+      icon: 'po-icon-handshake',
+      link: '/connectors'
+    },
   ];
 
   constructor(private carolAuthService: CarolAuthService) {

@@ -6,6 +6,7 @@ import { PoModule } from '@po-ui/ng-components';
 import { DatamodelsComponent } from './components/datamodels/datamodels.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ConnectorsComponent } from './components/connectors/connectors.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { LoaderComponent } from './components/loader/loader.component';
   exports: [],
   declarations: [
     HomeComponent,
+    ConnectorsComponent,
     DatamodelsComponent,
     LoaderComponent
   ],
