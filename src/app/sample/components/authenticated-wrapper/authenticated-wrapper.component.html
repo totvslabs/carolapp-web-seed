@@ -2,7 +2,9 @@
 <po-page-default *ngIf="!isLoggedIn" >
   <div class="po-row">
     <div class="po-lg-12">
-      <b>You are not logged in. You can authenticate in the "Login" page</b>
+      <span>You are not logged in. You can authenticate in the 
+        <a (click)="goToLogin()">"Login"</a>
+      page</span>
     </div>
   </div>
 </po-page-default>

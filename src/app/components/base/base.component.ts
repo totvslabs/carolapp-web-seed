@@ -34,7 +34,7 @@ export class BaseComponent {
     },
     {
       label: 'Authentication',
-      shortLabel:' Authentication',
+      shortLabel:' Authentic.',
       icon: 'po-icon-lock',
       link: '/authentication'
     },

@@ -5,18 +5,19 @@ import { CarolAuthService } from '@totvslabs/carol-app-fe-sdk';
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
-
 export class LoginComponent implements OnInit {
-  isLoggedIn: boolean = true;
+  readonly SELF_LOGIN_TRUE_LABEL = SELF_LOGIN_TRUE_LABEL;
+  readonly SELF_LOGIN_FALSE_LABEL = SELF_LOGIN_FALSE_LABEL;
   isSelfLogin = this.carolAuthService.selfLogin;
-  checkboxLabel = this.getCheckboxLabel();
+
+  isLoggedIn: boolean = true;
+  loggingIn: boolean = false;
+  loggingOut: boolean = false;
 
   userLogin: string = '';
   userPassword: string = '';
-  infoMessage: string = this.getInfoMessage();
 
-  loggingIn: boolean = false;
-  loggingOut: boolean = false;
+  infoMessage: string = this.getInfoMessage();
 
   constructor(
     public carolAuthService: CarolAuthService
@@ -29,7 +30,6 @@ export class LoginComponent implements OnInit {
 
   onChangeSelfLogin(isSelfLogin: boolean) {
     this.carolAuthService.setSelfLogin(isSelfLogin);
-    this.checkboxLabel = this.getCheckboxLabel();
   }
 
   async login() {
@@ -52,17 +52,13 @@ export class LoginComponent implements OnInit {
     this.infoMessage = this.getInfoMessage();
   }
 
-  private getCheckboxLabel(): string {
-    return this.carolAuthService.selfLogin ? LOGGED_IN_LABEL : LOGGED_OUT_LABEL;
-  }
-
   private getInfoMessage(): string {
     return this.isLoggedIn ? LOGGED_IN_INFO : LOGGED_OUT_INFO;
   }
 }
 
-const LOGGED_IN_LABEL = `Self login is set to TRUE. Nothing will happen after logging out except for a message in the 'loggedIn$' Observable`;
-const LOGGED_OUT_LABEL = 'Self login is set to FALSE. You will be redirected to the SSO page after logging out';
+const SELF_LOGIN_TRUE_LABEL = `Self login is set to TRUE. Nothing will happen after logging out except for a message in the 'loggedIn$' Observable`;
+const SELF_LOGIN_FALSE_LABEL = 'Self login is set to FALSE. You will be redirected to the SSO page after logging out';
 
 const LOGGED_IN_INFO = 'You are currently logged in';
 const LOGGED_OUT_INFO = 'You are currently NOT logged in. Requests to the Carol Platform may result in 401 exceptions';

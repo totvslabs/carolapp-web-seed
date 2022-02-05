@@ -5,9 +5,12 @@
     </p>
   </div>
   <div class="po-lg-12">
-    <po-checkbox [p-label]="checkboxLabel"
-      [(ngModel)]="isSelfLogin"
-      (ngModelChange)="onChangeSelfLogin($event)"></po-checkbox>
+      <po-switch [(ngModel)]="isSelfLogin"
+        p-label="Self Login"
+        [p-label-off]="SELF_LOGIN_FALSE_LABEL"
+        [p-label-on]="SELF_LOGIN_TRUE_LABEL"
+        (ngModelChange)="onChangeSelfLogin($event)">
+      </po-switch>
   </div>
 </div>
 
@@ -39,7 +42,11 @@
 </div>
 <div class="po-row">
   <div class="po-lg-4">
-    <po-button [p-disabled]="loggingIn || loggingOut" [p-loading]="loggingIn" p-label="Authenticate" (p-click)="login()"></po-button>
+    <po-button [p-disabled]="loggingIn || loggingOut"
+      [p-loading]="loggingIn"
+      p-label="Login"
+      (p-click)="login()">
+    </po-button>
   </div>
 </div>
 
