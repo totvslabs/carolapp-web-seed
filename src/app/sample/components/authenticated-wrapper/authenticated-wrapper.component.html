@@ -1,0 +1,12 @@
+<ng-content *ngIf="isLoggedIn"></ng-content>
+<po-page-default *ngIf="!isLoggedIn">
+  <div class="po-row">
+    <div class="po-lg-12">
+      <span
+        >You are not logged in. You can authenticate in the
+        <a class="highlight" (click)="goToLogin()">"Login"</a>
+        page</span
+      >
+    </div>
+  </div>
+</po-page-default>

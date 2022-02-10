@@ -1,0 +1,49 @@
+<app-authenticated-wrapper class="fade-in">
+  <po-page-default p-title="Datamodels">
+    <app-loader *ngIf="loadingDatamodels"></app-loader>
+    <section *ngIf="!loadingDatamodels">
+      <div class="po-row po-mb-3">
+        <div class="po-lg-12">
+          <p class="po-mb-1">
+            The Carol FE SDK provides methods and interfaces to help you
+            interact with the entities of your environment.
+          </p>
+          <p>
+            This sample components uses the methods from the
+            <span class="highlight">CarolDatamodelsService</span> class to build
+            a list of datamodels.
+            <br />
+            On triggering the
+            <span class="highlight">Show records</span> action, the
+            <span class="highlight">CarolSqlQueryService.runSQL</span> method
+            will execute a query that retrieves a list of records from the data
+            model.
+          </p>
+        </div>
+      </div>
+      <po-widget
+        *ngFor="let datamodel of datamodels"
+        class="po-row po-mb-2"
+        [p-title]="datamodel.label"
+        p-primary-label="Show records"
+        (p-primary-action)="openModal(datamodel)"
+      >
+        <h4>
+          {{ datamodel.name }}
+        </h4>
+        <p>
+          This Data Model currently has
+          <strong>
+            {{ datamodel.totalRecords | number }}
+          </strong>
+          records
+        </p>
+      </po-widget>
+    </section>
+  </po-page-default>
+
+  <po-modal #recordsModal [p-title]="titleRecordsModal" p-size="xl">
+    <po-table [p-loading]="loadingRecords" [p-items]="currentResults">
+    </po-table>
+  </po-modal>
+</app-authenticated-wrapper>

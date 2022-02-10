@@ -1,42 +1,44 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
-import {
-  PoFieldModule,
-  PoMenuModule,
-  PoModule,
-  PoPageModule,
-  PoToolbarModule,
-} from '@po-ui/ng-components';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BaseComponent } from './routes/base/base.component';
-import { HomeComponent } from './routes/home/home.component';
-import { AuthInterceptor } from './services/auth.interceptor';
+import { PoModule } from '@po-ui/ng-components';
+import { RouterModule } from '@angular/router';
+
+import conf from 'proxy.conf.json';
+import { CarolAuthService, CarolSdkModule } from '@totvslabs/carol-app-fe-sdk';
+import { HttpClientModule } from '@angular/common/http';
+import { BaseComponent } from './components/base/base.component';
+import { SampleModule } from './sample/sample.module';
+
+function appInitializer(carolAuth: CarolAuthService) {
+  return () =>
+    isDevMode()
+      ? carolAuth
+          .setDomain(conf['/api/*'].target)
+          .setOrganization(conf.carolOrganization)
+          .setEnvironment(conf.carolEnvironment)
+          .appStart()
+      : carolAuth.appStart();
+}
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, BaseComponent],
+  declarations: [AppComponent, BaseComponent],
   imports: [
+    CarolSdkModule,
+    HttpClientModule,
+    SampleModule,
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
-    PoPageModule,
-    PoFieldModule,
-    PoToolbarModule,
-    PoMenuModule,
-    FormsModule,
     PoModule,
-    RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([], { useHash: true }),
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      deps: [CarolAuthService],
       multi: true,
     },
   ],
