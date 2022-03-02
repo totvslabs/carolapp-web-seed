@@ -62,10 +62,10 @@ export class ConnectorsComponent implements OnInit {
     connectors: Connectors,
     stagings: StagingTables
   ): ConnectorRender[] {
-    return Object.entries(connectors).map(
+    return Object.entries(connectors)?.map(
       ([connectorId, connector]: [string, Connector]) => {
         const connectorStagings: Array<StagingTable> = stagings[connectorId];
-        const stagingTables: Array<StagingTableRender> = connectorStagings.map(
+        const stagingTables: Array<StagingTableRender> = connectorStagings?.map(
           (staging) => ({
             label: `${staging.name} (${staging.id})`,
             ready: staging.ready ? 'Ready' : 'Not Ready',

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { CarolAuthService } from '@totvslabs/carol-app-fe-sdk';
+import { take } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class IsLoggedInGuard implements CanActivate {
@@ -8,9 +9,13 @@ export class IsLoggedInGuard implements CanActivate {
 
   async canActivate(): Promise<boolean> {
     return await new Promise((resolve) => {
-      this.carolAuthService.loggedIn$.subscribe((loggedIn) => {
-        resolve(loggedIn);
-      });
+      if (this.carolAuthService.selfLogin) {
+        resolve(true);
+      } else {
+        this.carolAuthService.loggedIn$
+          .pipe(take(1))
+          .subscribe((loggedIn) => resolve(loggedIn));
+      }
     });
   }
 }
