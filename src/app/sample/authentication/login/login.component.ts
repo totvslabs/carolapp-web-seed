@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PoButtonGroupItem } from '@po-ui/ng-components';
 import { CarolAuthService } from '@totvslabs/carol-app-fe-sdk';
+import { map, merge, Observable, startWith, switchMap, tap } from 'rxjs';
+import { AuthSameOrganizationStatus } from '@totvslabs/carol-app-fe-sdk/lib/auth/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,21 +12,23 @@ import { CarolAuthService } from '@totvslabs/carol-app-fe-sdk';
 export class LoginComponent implements OnInit {
   readonly SELF_LOGIN_TRUE_LABEL = SELF_LOGIN_TRUE_LABEL;
   readonly SELF_LOGIN_FALSE_LABEL = SELF_LOGIN_FALSE_LABEL;
+  readonly LOGGED_IN_INFO = LOGGED_IN_INFO;
+  readonly LOGGED_OUT_INFO = LOGGED_OUT_INFO;
+
   isSelfLogin = this.carolAuthService.selfLogin;
+  userLogin = '';
+  userPassword = '';
 
-  isLoggedIn: boolean = true;
-  loggingIn: boolean = false;
-  loggingOut: boolean = false;
-
-  userLogin: string = '';
-  userPassword: string = '';
-  actionGroupButtons: Array<PoButtonGroupItem> = [
+  readonly actionGroupButtonsLogin: Array<PoButtonGroupItem> = [
     {
       action: this.login.bind(this),
       icon: 'po-icon-lock',
       label: 'Login',
       tooltip: 'Start a new session with the provided credentials',
     },
+  ];
+
+  readonly actionGroupButtonsLogout: Array<PoButtonGroupItem> = [
     {
       action: this.logout.bind(this),
       icon: 'po-icon-exit',
@@ -33,14 +37,44 @@ export class LoginComponent implements OnInit {
     },
   ];
 
-  infoMessage: string = this.getInfoMessage();
+  readonly isLoggedIn$ = this.carolAuthService.loggedIn$.pipe(
+    tap((isLogged) => this.isLoggedInHandler(isLogged))
+  );
+
+  readonly hasCredentialsDisabled$: Observable<boolean | undefined> = merge(
+    this.carolAuthService.receivedLoginUnderOrganization$.pipe(
+      startWith(true),
+      switchMap(
+        (): Promise<AuthSameOrganizationStatus> =>
+          this.carolAuthService.tryAutoLoginUnderSameOrganization()
+      ),
+      tap<AuthSameOrganizationStatus>((autoLoginUpdate) => {
+        if (autoLoginUpdate.targetToken) {
+          this.carolAuthService.setSessionToken(autoLoginUpdate.targetToken);
+        }
+      }),
+      map(
+        (autoLoginUpdate: AuthSameOrganizationStatus): boolean =>
+          (autoLoginUpdate.hasActiveSession &&
+            !autoLoginUpdate.targetToken) as boolean
+      )
+    ),
+    this.carolAuthService.receivedLogoutUnderOrganization$.pipe(
+      map((_) => false)
+    )
+  );
 
   constructor(public carolAuthService: CarolAuthService) {}
 
+  get organization(): string {
+    return this.carolAuthService.organization;
+  }
+
+  get environment(): string {
+    return this.carolAuthService.environment;
+  }
+
   ngOnInit() {
-    this.carolAuthService.loggedIn$.subscribe(
-      this.isLoggedInHandler.bind(this)
-    );
     this.carolAuthService.setSelfLogin(true);
   }
 
@@ -59,10 +93,6 @@ export class LoginComponent implements OnInit {
   }
 
   async logout() {
-    if (!this.isLoggedIn) {
-      return;
-    }
-
     this.setButtonState(true);
     try {
       await this.carolAuthService.logout();
@@ -72,16 +102,15 @@ export class LoginComponent implements OnInit {
   }
 
   private setButtonState(startingAction?: boolean) {
-    this.actionGroupButtons.forEach((b) => (b.disabled = startingAction));
+    this.actionGroupButtonsLogin.forEach((b) => (b.disabled = startingAction));
+    this.actionGroupButtonsLogout.forEach((b) => (b.disabled = startingAction));
   }
 
   private isLoggedInHandler(isLoggedIn: boolean): void {
-    this.isLoggedIn = isLoggedIn;
-    this.infoMessage = this.getInfoMessage();
-  }
-
-  private getInfoMessage(): string {
-    return this.isLoggedIn ? LOGGED_IN_INFO : LOGGED_OUT_INFO;
+    if (isLoggedIn) {
+      //NOTE: app authenticated starts, e.g. router.navigateByUrl('/home')
+      console.log('LOGGED IN');
+    }
   }
 }
 

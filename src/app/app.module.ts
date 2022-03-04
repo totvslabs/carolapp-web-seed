@@ -13,14 +13,18 @@ import { BaseComponent } from './components/base/base.component';
 import { SampleModule } from './sample/sample.module';
 
 function appInitializer(carolAuth: CarolAuthService) {
+  //NOTE: only use this value as TRUE if you will take care of the authentication flow. See LoginComponent
+  const disableAutoLogin = true;
+
   return () =>
     isDevMode()
       ? carolAuth
           .setDomain(conf['/api/*'].target)
           .setOrganization(conf.carolOrganization)
           .setEnvironment(conf.carolEnvironment)
+          .setSelfLogin(disableAutoLogin)
           .appStart()
-      : carolAuth.appStart();
+      : carolAuth.setSelfLogin(disableAutoLogin).appStart();
 }
 
 @NgModule({
