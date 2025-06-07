@@ -18,12 +18,13 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/carol-app-fe-seed",
+            "outputPath": {
+              "base": "dist/carol-app-fe-seed"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.png", "src/assets"],
@@ -31,7 +32,8 @@
               "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -56,9 +58,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -68,13 +68,15 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "carol-app-fe-seed:build:production"
+              "buildTarget": "carol-app-fe-seed:build:production"
             },
             "development": {
-              "browserTarget": "carol-app-fe-seed:build:development",
-              "proxyConfig": "proxy.conf.json"
+              "buildTarget": "carol-app-fe-seed:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "carol-app-fe-seed:build"
+            "buildTarget": "carol-app-fe-seed:build"
           }
         },
         "test": {
@@ -103,6 +105,5 @@
         }
       }
     }
-  },
-  "defaultProject": "carol-app-fe-seed"
+  }
 }

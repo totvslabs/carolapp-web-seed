@@ -1,13 +1,13 @@
 {
   "carolOrganization": "ORG_NAME",
   "carolEnvironment": "ENV_NAME",
-  "/api/*": {
+  "/api/**": {
     "target": "https://ORG_NAME.carol.ai",
     "secure": true,
     "logLevel": "debug",
     "changeOrigin": true
   },
-  "/sql/*": {
+  "/sql/**": {
     "target": "https://api.carol.ai/sql/v1/query",
     "secure": true,
     "logLevel": "debug",

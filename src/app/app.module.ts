@@ -6,9 +6,12 @@ import { AppComponent } from './app.component';
 import { PoModule } from '@po-ui/ng-components';
 import { RouterModule } from '@angular/router';
 
-import conf from 'proxy.conf.json';
+import conf from '../../proxy.conf.json';
 import { CarolAuthService, CarolSdkModule } from '@totvslabs/carol-app-fe-sdk';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { BaseComponent } from './components/base/base.component';
 import { SampleModule } from './sample/sample.module';
 
@@ -19,7 +22,7 @@ function appInitializer(carolAuth: CarolAuthService) {
   return () =>
     isDevMode()
       ? carolAuth
-          .setDomain(conf['/api/*'].target)
+          .setDomain(conf['/api/**'].target)
           .setOrganization(conf.carolOrganization)
           .setEnvironment(conf.carolEnvironment)
           .setSelfLogin(disableAutoLogin)
@@ -29,9 +32,9 @@ function appInitializer(carolAuth: CarolAuthService) {
 
 @NgModule({
   declarations: [AppComponent, BaseComponent],
+  bootstrap: [AppComponent],
   imports: [
     CarolSdkModule,
-    HttpClientModule,
     SampleModule,
     BrowserModule,
     AppRoutingModule,
@@ -45,7 +48,7 @@ function appInitializer(carolAuth: CarolAuthService) {
       deps: [CarolAuthService],
       multi: true,
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
