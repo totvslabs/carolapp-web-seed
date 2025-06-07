@@ -68,12 +68,14 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "carol-app-fe-seed:build:production"
             },
             "development": {
-              "proxyConfig": "proxy.conf.json",
               "buildTarget": "carol-app-fe-seed:build:development"
             }
           },

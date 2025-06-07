@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { PoModule } from '@po-ui/ng-components';
 import { RouterModule } from '@angular/router';
 
-import conf from 'proxy.conf.json';
+import conf from '../../proxy.conf.json';
 import { CarolAuthService, CarolSdkModule } from '@totvslabs/carol-app-fe-sdk';
 import {
   provideHttpClient,
@@ -22,7 +22,7 @@ function appInitializer(carolAuth: CarolAuthService) {
   return () =>
     isDevMode()
       ? carolAuth
-          .setDomain(conf['/api/*'].target)
+          .setDomain(conf['/api/**'].target)
           .setOrganization(conf.carolOrganization)
           .setEnvironment(conf.carolEnvironment)
           .setSelfLogin(disableAutoLogin)

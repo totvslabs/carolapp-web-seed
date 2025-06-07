@@ -19,9 +19,10 @@
     "@angular/platform-browser": "~18.2.13",
     "@angular/platform-browser-dynamic": "~18.2.13",
     "@angular/router": "~18.2.13",
-    "@po-ui/ng-components": "^15.9.0",
+    "@po-ui/ng-components": "^18.24.0",
+    "@po-ui/style": "^18.24.0",
     "@totvslabs/carol-app-fe-sdk": "latest",
-    "rxjs": "~7.5.5",
+    "rxjs": "~7.8.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },
