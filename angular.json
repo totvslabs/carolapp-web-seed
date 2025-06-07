@@ -70,11 +70,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "carol-app-fe-seed:build:production"
+              "buildTarget": "carol-app-fe-seed:build:production"
             },
             "development": {
-              "browserTarget": "carol-app-fe-seed:build:development",
-              "proxyConfig": "proxy.conf.json"
+              "proxyConfig": "proxy.conf.json",
+              "buildTarget": "carol-app-fe-seed:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "carol-app-fe-seed:build"
+            "buildTarget": "carol-app-fe-seed:build"
           }
         },
         "test": {
